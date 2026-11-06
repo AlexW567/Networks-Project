@@ -1,54 +1,113 @@
 import socket
 import threading
+import hashlib
 
-IP = "0.0.0.0"
-PORT = 12345
-ADDR = (IP,PORT)
-SIZE = 1024
-FORMAT = "utf-8"
-SERVER_PATH = "server"
-
-### to handle the clients
-def handle_client (conn,addr):
-
-    print(f"[NEW CONNECTION] {addr} connected.")
-    conn.send("OK@Welcome to the server".encode(FORMAT))
-
-    while True:
-        data =  conn.recv(SIZE).decode(FORMAT)
-        data = data.split("@")
-        cmd = data[0]
-       
-        send_data = "OK@"
-
-        if cmd == "LOGOUT":
-            break
-        elif cmd == "HELP":
-            send_data += "HELP - Available commands:\n"
-            send_data += "TASK - Get the task from the server.\n"
-            send_data += "LOGOUT - Logout from the server.\n"
-            conn.send(send_data.encode(FORMAT))
-        elif cmd == "TASK":
-            send_data += "LOGOUT from the server.\n"
-
-            conn.send(send_data.encode(FORMAT))
+from connection import Connection
 
 
+class Server:
+    connection: Connection
+    users: dict[str, str] = {}
+    passwords: dict[str, str] = {}
 
-    print(f"{addr} disconnected")
-    conn.close()
+    def __init__(
+        self, 
+        ip: str = "0.0.0.0", 
+        port: int = 12345,
+        size: int = 1024,
+        format: str = "utf-8",
+        server_data_path: str = "server_data",
+    ):
+        self.connection = Connection(
+            ip=ip,
+            port=port,
+            addr=(ip, port),
+            size=size,
+            format=format,
+            server_data_path=server_data_path,
+            client=None,
+        )
+        self.users = {
+            "user0": "0",
+            "user1": "1"
+        }
+        self.passwords = {
+            "0": "1f489582f7ea4c208b70219a2bb6a322227a7516630530a10ed7f2710cfbe447",
+            "1": "0b14d501a594442a01c6859541bcb3e8164d183d32937b851835442f69d5c94e"
+        }
 
+    def start(self):
+        print("Starting the server")
+        self.connection.client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        self.connection.client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.connection.client.bind(self.connection.addr)
+        self.connection.client.listen()
+        print(f"server is listening on {self.connection.ip}: {self.connection.port}")
+
+    def run_client(self, conn, addr):
+        print(f"[NEW CONNECTION] {addr} connected.")
+        conn.send("OK@Welcome to the server".encode(self.connection.format))
+
+        session = None
+
+        while True:
+            data = conn.recv(self.connection.size).decode(self.connection.format)
+            session = self.handle_command(conn, data, session)
+            ...
+
+        print(f"{addr} disconnected")
+        conn.close()
+
+    def handle_command(self, conn, data: str, session: str | None):
+        code = data
+        match code:
+            case "HELP":
+                self.handle_help(conn)
+            case "LOGIN":
+                return self.handle_login(conn)
+            case "PROFILE":
+                self.handle_profile(conn, session)
+            case _:
+                conn.send(f"OK@Unknown command: {code!r}\n".encode(self.connection.format))
+                ...
+
+    def handle_help(self, conn):
+        conn.send("OK@HELP - Available commands:\n" \
+            "LOGIN - Login to the server.\n" \
+            "PROFILE - Get the profile of the user.\n".encode(self.connection.format))
+
+    def handle_login(self, conn) -> str | None:
+        username = conn.recv(self.connection.size).decode(self.connection.format)
+        password = conn.recv(self.connection.size).decode(self.connection.format)
+
+        if username not in self.users:
+            conn.send("OK@User not found".encode(self.connection.format))
+            return
+        if self.passwords[self.users[username]] != hashlib.sha256(password.encode()).hexdigest():
+            conn.send("OK@Invalid password".encode(self.connection.format))
+            return
+        
+        conn.send(f"OK@Login successful {username}".encode(self.connection.format))
+        return username
+        
+    def handle_profile(self, conn, session: str | None):
+        if session is None:
+            conn.send("OK@Not logged in".encode(self.connection.format))
+            return
+        conn.send(f"OK@Profile: {session}".encode(self.connection.format))
+
+    def main(self):
+        while True:
+            conn, addr = self.connection.client.accept()
+            thread = threading.Thread(target = self.run_client, args = (conn, addr))
+            thread.start()
+
+        self.connection.client.close()
 
 def main():
-    print("Starting the server")
-    server = socket.socket(socket.AF_INET,socket.SOCK_STREAM) ## used IPV4 and TCP connection
-    server.bind(ADDR) # bind the address
-    server.listen() ## start listening
-    print(f"server is listening on {IP}: {PORT}")
-    while True:
-        conn, addr = server.accept() ### accept a connection from a client
-        thread = threading.Thread(target = handle_client, args = (conn, addr)) ## assigning a thread for each client
-        thread.start()
+    server = Server(ip='0.0.0.0', port=12345)
+    server.start()
+    server.main()
 
 
 if __name__ == "__main__":

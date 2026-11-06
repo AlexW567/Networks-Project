@@ -50,11 +50,16 @@ class Client:
     Returns False if the command is LOGOUT.
     """
     def send(self, command: str) -> bool:
-        if command == "LOGOUT":
+        if command in ("HELP"):
             self.connection.client.send(command.encode(self.connection.format))
-            return False
-        if command in ("TASK", "HELP"):
-            self.connection.client.send(command.encode(self.connection.format))
+        if command == "LOGIN":
+            self.connection.client.send("LOGIN".encode(self.connection.format))
+            username = input("Enter username: ")
+            password = input("Enter password: ")
+            self.connection.client.send(f"{username}".encode(self.connection.format))
+            self.connection.client.send(f"{password}".encode(self.connection.format))
+        if command == "PROFILE":
+            self.connection.client.send("PROFILE".encode(self.connection.format))
         return True
         
 
