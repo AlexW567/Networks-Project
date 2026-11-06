@@ -1,9 +1,8 @@
-import os
 import socket
 import threading
 
 IP = "0.0.0.0"
-PORT = 4450
+PORT = 12345
 ADDR = (IP,PORT)
 SIZE = 1024
 FORMAT = "utf-8"
@@ -24,8 +23,12 @@ def handle_client (conn,addr):
 
         if cmd == "LOGOUT":
             break
-
-        elif cmd == "TASK": 
+        elif cmd == "HELP":
+            send_data += "HELP - Available commands:\n"
+            send_data += "TASK - Get the task from the server.\n"
+            send_data += "LOGOUT - Logout from the server.\n"
+            conn.send(send_data.encode(FORMAT))
+        elif cmd == "TASK":
             send_data += "LOGOUT from the server.\n"
 
             conn.send(send_data.encode(FORMAT))
