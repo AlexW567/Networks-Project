@@ -1,13 +1,10 @@
 import socket
 
+from connection import Connection
+
+
 class Client:
-    ip: str
-    port: int
-    addr: tuple[str, int]
-    size: int
-    format: str
-    server_data_path: str
-    client: socket.socket
+    connection: Connection
 
     def __init__(
         self,
@@ -17,16 +14,19 @@ class Client:
         format: str = "utf-8",
         server_data_path: str = "server_data",
     ):
-        self.ip = ip
-        self.port = port
-        self.addr = (ip, port)
-        self.size = size
-        self.format = format
-        self.server_data_path = server_data_path
+        self.connection = Connection(
+            ip=ip,
+            port=port,
+            addr=(ip, port),
+            size=size,
+            format=format,
+            server_data_path=server_data_path,
+            client=None,
+        )
 
     def connect(self):
-        self.client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        self.client.connect(self.addr)
+        self.connection.client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        self.connection.client.connect(self.connection.addr)
 
     """
     Handle the response from the server.
@@ -51,17 +51,17 @@ class Client:
     """
     def send(self, command: str) -> bool:
         if command == "LOGOUT":
-            self.client.send(command.encode(self.format))
+            self.connection.client.send(command.encode(self.connection.format))
             return False
         if command in ("TASK", "HELP"):
-            self.client.send(command.encode(self.format))
+            self.connection.client.send(command.encode(self.connection.format))
         return True
         
 
 
     def main(self):
         while True:
-            response = self.client.recv(self.size).decode(self.format)
+            response = self.connection.client.recv(self.connection.size).decode(self.connection.format)
 
             if not self.handle_response(response):
                 break
@@ -74,7 +74,7 @@ class Client:
                 break
 
         print("Disconnected from the server.")
-        self.client.close()
+        self.connection.client.close()
             
 
 
