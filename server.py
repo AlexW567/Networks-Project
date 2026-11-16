@@ -70,7 +70,7 @@ class Server:
                 self.handle_profile(conn, session)
             case _:
                 conn.send(f"OK@Unknown command: {code!r}\n".encode(self.connection.format))
-                ...
+        return session  # keep the login for every non-LOGIN command (returning None logged the user out)
 
     def handle_help(self, conn):
         conn.send("OK@HELP - Available commands:\n" \
