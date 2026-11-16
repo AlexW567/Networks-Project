@@ -9,7 +9,7 @@ class Client:
     def __init__(
         self,
         ip: str = "127.0.0.1",
-        port: int = 4450,
+        port: int = 12345,  # matches the server's port
         size: int = 1024,
         format: str = "utf-8",
         server_data_path: str = "server_data",
@@ -33,7 +33,10 @@ class Client:
     Returns False if the connection is lost.
     """
     def handle_response(self, data: str) -> bool:
-        code, message = data.split("@")
+        if not data:  # empty reply = the server closed the connection
+            print("Server disconnected.")
+            return False
+        code, _, message = data.partition("@")  # split on the first @ only, so an @ in the message can't crash it
         match code:
             case "OK":
                 print(f"{message}")
@@ -64,20 +67,23 @@ class Client:
 
 
     def main(self):
-        while True:
-            response = self.connection.client.recv(self.connection.size).decode(self.connection.format)
+        try:
+            while True:
+                response = self.connection.client.recv(self.connection.size).decode(self.connection.format)
 
-            if not self.handle_response(response):
-                break
+                if not self.handle_response(response):
+                    break
 
-            line = input("> ").strip()
-            while not line:  # empty input would send 0 bytes and the server would never reply
                 line = input("> ").strip()
-            parts = line.split(" ")
-            command = parts[0]
+                while not line:  # empty input would send 0 bytes and the server would never reply
+                    line = input("> ").strip()
+                parts = line.split(" ")
+                command = parts[0].upper()  # "help" works the same as "HELP"
 
-            if not self.send(command):
-                break
+                if not self.send(command):
+                    break
+        except (ConnectionResetError, ConnectionAbortedError):  # server crashed or was closed
+            print("Lost connection to the server.")
 
         print("Disconnected from the server.")
         self.connection.client.close()
@@ -86,3 +92,14 @@ class Client:
 
 
     
+
+# Run with: python client.py            (server on this PC)
+#       or: python client.py SERVER_IP  (server on another PC)
+if __name__ == "__main__":
+    import sys
+    client = Client(ip=sys.argv[1] if len(sys.argv) > 1 else "127.0.0.1")
+    try:
+        client.connect()
+    except (ConnectionRefusedError, TimeoutError):
+        sys.exit(f"Couldn't reach a server at {client.connection.addr}. Is server.py running?")
+    client.main()
