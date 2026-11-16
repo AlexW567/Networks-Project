@@ -83,3 +83,6 @@ cython_debug/
 
 # pyenv
 .python-version
+
+# Files stored by the server (uploads can be GBs, never commit them)
+server_data/

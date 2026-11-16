@@ -52,7 +52,7 @@ class Client:
     Send a command to the server.
     Returns False if the command is LOGOUT.
     """
-    def send(self, command: str) -> bool:
+    def send(self, command: str, args: list[str] = []) -> bool:
         if command == "LOGIN":
             self.connection.client.send("LOGIN".encode(self.connection.format))
             username = input("Enter username: ")
@@ -61,7 +61,8 @@ class Client:
             self.connection.client.send(f"{password}".encode(self.connection.format))
         else:
             # Send every other command (even typos) so the server always replies and we never wait forever.
-            self.connection.client.send(command.encode(self.connection.format))
+            # Arguments go after the command, separated by @: "SUBFOLDER@create@music"
+            self.connection.client.send("@".join([command, *args]).encode(self.connection.format))
         return command != "LOGOUT"
         
 
@@ -77,10 +78,10 @@ class Client:
                 line = input("> ").strip()
                 while not line:  # empty input would send 0 bytes and the server would never reply
                     line = input("> ").strip()
-                parts = line.split(" ")
+                parts = line.split()  # split() also ignores extra spaces between words
                 command = parts[0].upper()  # "help" works the same as "HELP"
 
-                if not self.send(command):
+                if not self.send(command, parts[1:]):  # parts[1:] = the arguments (folder names, etc.)
                     break
         except (ConnectionResetError, ConnectionAbortedError):  # server crashed or was closed
             print("Lost connection to the server.")
