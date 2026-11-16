@@ -50,17 +50,16 @@ class Client:
     Returns False if the command is LOGOUT.
     """
     def send(self, command: str) -> bool:
-        if command in ("HELP"):
-            self.connection.client.send(command.encode(self.connection.format))
         if command == "LOGIN":
             self.connection.client.send("LOGIN".encode(self.connection.format))
             username = input("Enter username: ")
             password = input("Enter password: ")
             self.connection.client.send(f"{username}".encode(self.connection.format))
             self.connection.client.send(f"{password}".encode(self.connection.format))
-        if command == "PROFILE":
-            self.connection.client.send("PROFILE".encode(self.connection.format))
-        return True
+        else:
+            # Send every other command (even typos) so the server always replies and we never wait forever.
+            self.connection.client.send(command.encode(self.connection.format))
+        return command != "LOGOUT"
         
 
 
@@ -71,7 +70,9 @@ class Client:
             if not self.handle_response(response):
                 break
 
-            line = input("> ")
+            line = input("> ").strip()
+            while not line:  # empty input would send 0 bytes and the server would never reply
+                line = input("> ").strip()
             parts = line.split(" ")
             command = parts[0]
 

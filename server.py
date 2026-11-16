@@ -52,8 +52,9 @@ class Server:
 
         while True:
             data = conn.recv(self.connection.size).decode(self.connection.format)
+            if not data or data == "LOGOUT":  # empty data = client closed the connection
+                break
             session = self.handle_command(conn, data, session)
-            ...
 
         print(f"{addr} disconnected")
         conn.close()
