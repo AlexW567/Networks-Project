@@ -31,6 +31,8 @@ class Server:
         )
         self.busy: set[str] = set()  # files being uploaded/downloaded/deleted right now
         self.busy_lock = threading.Lock()  # threads share self.busy, so guard it
+        self.clients: dict[tuple, str] = {}  # connected clients: address -> username (or "not logged in")
+        self.clients_lock = threading.Lock()  # every client thread edits self.clients
         self.users = {
             "user0": "0",
             "user1": "1"
@@ -54,18 +56,34 @@ class Server:
         conn.send("OK@Welcome to the server".encode(self.connection.format))
 
         session = None
+        self.update_clients(addr, "not logged in")
 
         try:
             while True:
                 data = conn.recv(self.connection.size).decode(self.connection.format)
                 if not data or data == "LOGOUT":  # empty data = client closed the connection
                     break
-                session = self.handle_command(conn, data, session)
+                new_session = self.handle_command(conn, data, session)
+                if new_session != session:  # a login or failed login changed who this client is
+                    self.update_clients(addr, new_session or "not logged in")
+                session = new_session
         except (ConnectionResetError, ConnectionAbortedError):  # client closed its window without LOGOUT
             pass
+        finally:
+            self.update_clients(addr, None)  # always drop the client, whatever ended the thread
 
         print(f"{addr} disconnected")
         conn.close()
+
+    # Add/update a client in the connected-clients list (user=None removes it), then print who is online
+    def update_clients(self, addr, user: str | None):
+        with self.clients_lock:
+            if user is None:
+                self.clients.pop(addr, None)
+            else:
+                self.clients[addr] = user
+            online = [f"{a[0]}:{a[1]} ({u})" for a, u in self.clients.items()]
+        print(f"[CLIENTS ONLINE: {len(online)}] " + ", ".join(online))
 
     def handle_command(self, conn, data: str, session: str | None):
         code, *args = data.split("@")  # messages look like "COMMAND@arg1@arg2"
