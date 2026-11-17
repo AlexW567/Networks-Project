@@ -1,3 +1,4 @@
+import os
 import socket
 
 from connection import Connection
@@ -23,6 +24,7 @@ class Client:
             server_data_path=server_data_path,
             client=None,
         )
+        self.pending: str | None = None  # a reply we already have, so main() doesn't wait on the server
 
     def connect(self):
         self.connection.client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -59,6 +61,8 @@ class Client:
             password = input("Enter password: ")
             self.connection.client.send(f"{username}".encode(self.connection.format))
             self.connection.client.send(f"{password}".encode(self.connection.format))
+        elif command == "UPLOAD":
+            self.upload(args)
         else:
             # Send every other command (even typos) so the server always replies and we never wait forever.
             # Arguments go after the command, separated by @: "SUBFOLDER@create@music"
@@ -67,10 +71,28 @@ class Client:
         
 
 
+    # UPLOAD <local file> [server folder]: send "UPLOAD@size@path", wait for READY, then stream the file
+    def upload(self, args: list[str]):
+        if not args or not os.path.isfile(args[0]):
+            self.pending = "OK@Usage: UPLOAD <local file> [server folder] (file must exist)"
+            return
+        name = os.path.basename(args[0])
+        dest = f"{args[1]}/{name}" if len(args) > 1 else name
+        sock = self.connection.client
+        sock.send(f"UPLOAD@{os.path.getsize(args[0])}@{dest}".encode(self.connection.format))
+        reply = sock.recv(self.connection.size).decode(self.connection.format)
+        if reply != "OK@READY":  # server refused (bad folder, file exists...)
+            self.pending = reply
+            return
+        with open(args[0], "rb") as f:
+            while chunk := f.read(65536):
+                sock.sendall(chunk)  # server's final "Uploaded" reply is picked up by main()
+
     def main(self):
         try:
             while True:
-                response = self.connection.client.recv(self.connection.size).decode(self.connection.format)
+                response = self.pending or self.connection.client.recv(self.connection.size).decode(self.connection.format)
+                self.pending = None
 
                 if not self.handle_response(response):
                     break

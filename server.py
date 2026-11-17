@@ -73,12 +73,14 @@ class Server:
                 return self.handle_login(conn)
             case "PROFILE":
                 self.handle_profile(conn, session)
-            case "DIR" | "SUBFOLDER" if session is None:  # file commands need a login
+            case "DIR" | "SUBFOLDER" | "UPLOAD" if session is None:  # file commands need a login
                 conn.send("OK@Please LOGIN first.".encode(self.connection.format))
             case "DIR":
                 self.handle_dir(conn, args)
             case "SUBFOLDER":
                 self.handle_subfolder(conn, args)
+            case "UPLOAD":
+                self.handle_upload(conn, args)
             case _:
                 conn.send(f"OK@Unknown command: {code!r}\n".encode(self.connection.format))
         return session  # keep the login for every non-LOGIN command (returning None logged the user out)
@@ -89,6 +91,7 @@ class Server:
             "PROFILE - Get the profile of the user.\n" \
             "DIR [folder] - List files and folders on the server.\n" \
             "SUBFOLDER create|delete <path> - Make or remove a folder on the server.\n" \
+            "UPLOAD <local file> [folder] - Upload a file to the server.\n" \
             "LOGOUT - Disconnect from the server.\n".encode(self.connection.format))
 
     # Turn a client-given path into a real path inside server_data.
@@ -131,6 +134,33 @@ class Server:
             conn.send(f"OK@Error: {path} does not exist.".encode(self.connection.format))
         except OSError:  # folder isn't empty, or it's actually a file
             conn.send(f"OK@Error: {path} is not an empty folder.".encode(self.connection.format))
+
+    # UPLOAD@<size>@<server path>: reply READY, then read exactly <size> raw bytes in chunks
+    def handle_upload(self, conn, args: list[str]):
+        if len(args) != 2 or not args[0].isdigit():
+            conn.send("OK@Usage: UPLOAD <local file> [server folder]".encode(self.connection.format))
+            return
+        size, dest = int(args[0]), self.safe_path(args[1])
+        if dest is None or not os.path.isdir(os.path.dirname(dest)):
+            conn.send("OK@Error: server folder not found.".encode(self.connection.format))
+            return
+        if os.path.exists(dest):
+            conn.send("OK@Error: that file already exists on the server.".encode(self.connection.format))
+            return
+        conn.send("OK@READY".encode(self.connection.format))
+        part, received = dest + ".part", 0  # write to .part so a dropped upload never leaves a half file
+        with open(part, "wb") as f:
+            while received < size:
+                chunk = conn.recv(min(65536, size - received))
+                if not chunk:  # client vanished mid-upload
+                    break
+                f.write(chunk)
+                received += len(chunk)
+        if received < size:
+            os.remove(part)
+            raise ConnectionResetError  # run_client already handles this as a disconnect
+        os.replace(part, dest)
+        conn.send(f"OK@Uploaded {args[1]} ({size} bytes)".encode(self.connection.format))
 
     def handle_login(self, conn) -> str | None:
         username = conn.recv(self.connection.size).decode(self.connection.format)
