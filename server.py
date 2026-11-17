@@ -28,6 +28,8 @@ class Server:
             server_data_path=server_data_path,
             client=None,
         )
+        self.busy: set[str] = set()  # files being uploaded/downloaded/deleted right now
+        self.busy_lock = threading.Lock()  # threads share self.busy, so guard it
         self.users = {
             "user0": "0",
             "user1": "1"
@@ -73,7 +75,7 @@ class Server:
                 return self.handle_login(conn)
             case "PROFILE":
                 self.handle_profile(conn, session)
-            case "DIR" | "SUBFOLDER" | "UPLOAD" if session is None:  # file commands need a login
+            case "DIR" | "SUBFOLDER" | "UPLOAD" | "DELETE" if session is None:  # file commands need a login
                 conn.send("OK@Please LOGIN first.".encode(self.connection.format))
             case "DIR":
                 self.handle_dir(conn, args)
@@ -81,6 +83,8 @@ class Server:
                 self.handle_subfolder(conn, args)
             case "UPLOAD":
                 self.handle_upload(conn, args)
+            case "DELETE":
+                self.handle_delete(conn, args)
             case _:
                 conn.send(f"OK@Unknown command: {code!r}\n".encode(self.connection.format))
         return session  # keep the login for every non-LOGIN command (returning None logged the user out)
@@ -92,6 +96,7 @@ class Server:
             "DIR [folder] - List files and folders on the server.\n" \
             "SUBFOLDER create|delete <path> - Make or remove a folder on the server.\n" \
             "UPLOAD <local file> [folder] - Upload a file to the server.\n" \
+            "DELETE <file> - Delete a file on the server.\n" \
             "LOGOUT - Disconnect from the server.\n".encode(self.connection.format))
 
     # Turn a client-given path into a real path inside server_data.
@@ -144,6 +149,16 @@ class Server:
         if dest is None or not os.path.isdir(os.path.dirname(dest)):
             conn.send("OK@Error: server folder not found.".encode(self.connection.format))
             return
+        if not self.claim(dest):
+            conn.send("OK@Error: that file is currently being processed.".encode(self.connection.format))
+            return
+        try:
+            self.receive_file(conn, args[1], size, dest)
+        finally:
+            self.release(dest)  # always free the file, even if the client drops mid-upload
+
+    # The part of UPLOAD that runs while the file is claimed
+    def receive_file(self, conn, name: str, size: int, dest: str):
         if os.path.exists(dest):
             conn.send("OK@Error: that file already exists on the server.".encode(self.connection.format))
             return
@@ -160,7 +175,40 @@ class Server:
             os.remove(part)
             raise ConnectionResetError  # run_client already handles this as a disconnect
         os.replace(part, dest)
-        conn.send(f"OK@Uploaded {args[1]} ({size} bytes)".encode(self.connection.format))
+        conn.send(f"OK@Uploaded {name} ({size} bytes)".encode(self.connection.format))
+
+    # Mark a file as in use. Returns False if another client is already using it.
+    # UPLOAD, DOWNLOAD and DELETE all call this so they can't touch the same file at once.
+    def claim(self, path: str) -> bool:
+        with self.busy_lock:
+            if path in self.busy:
+                return False
+            self.busy.add(path)
+            return True
+
+    def release(self, path: str):
+        with self.busy_lock:
+            self.busy.discard(path)
+
+    # DELETE@<path>: remove one file (folders are removed with SUBFOLDER delete)
+    def handle_delete(self, conn, args: list[str]):
+        if len(args) != 1:
+            conn.send("OK@Usage: DELETE <file>".encode(self.connection.format))
+            return
+        path = self.safe_path(args[0])
+        if path is None or not os.path.isfile(path):
+            conn.send(f"OK@Error: {args[0]} does not exist.".encode(self.connection.format))
+            return
+        if not self.claim(path):
+            conn.send(f"OK@Error: {args[0]} is currently being processed.".encode(self.connection.format))
+            return
+        try:
+            os.remove(path)
+            conn.send(f"OK@Deleted {args[0]}".encode(self.connection.format))
+        except OSError:
+            conn.send(f"OK@Error: could not delete {args[0]}.".encode(self.connection.format))
+        finally:
+            self.release(path)
 
     def handle_login(self, conn) -> str | None:
         username = conn.recv(self.connection.size).decode(self.connection.format)
