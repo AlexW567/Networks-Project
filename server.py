@@ -159,9 +159,11 @@ class Server:
 
     # The part of UPLOAD that runs while the file is claimed
     def receive_file(self, conn, name: str, size: int, dest: str):
-        if os.path.exists(dest):
-            conn.send("OK@Error: that file already exists on the server.".encode(self.connection.format))
-            return
+        if os.path.exists(dest):  # ask the client before overwriting (assignment requires it)
+            conn.send("OK@EXISTS".encode(self.connection.format))
+            if conn.recv(self.connection.size).decode(self.connection.format).upper() != "Y":
+                conn.send("OK@Upload cancelled, file not overwritten.".encode(self.connection.format))
+                return
         conn.send("OK@READY".encode(self.connection.format))
         part, received = dest + ".part", 0  # write to .part so a dropped upload never leaves a half file
         with open(part, "wb") as f:

@@ -81,7 +81,11 @@ class Client:
         sock = self.connection.client
         sock.send(f"UPLOAD@{os.path.getsize(args[0])}@{dest}".encode(self.connection.format))
         reply = sock.recv(self.connection.size).decode(self.connection.format)
-        if reply != "OK@READY":  # server refused (bad folder, file exists...)
+        if reply == "OK@EXISTS":  # file is already on the server: let the user decide
+            answer = "Y" if input(f"{dest} already exists. Overwrite? (y/n): ").strip().lower() == "y" else "N"
+            sock.send(answer.encode(self.connection.format))
+            reply = sock.recv(self.connection.size).decode(self.connection.format)
+        if reply != "OK@READY":  # server refused (bad folder) or the user said no
             self.pending = reply
             return
         with open(args[0], "rb") as f:
