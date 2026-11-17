@@ -2,6 +2,7 @@ import os
 import socket
 import threading
 import hashlib
+import hmac
 
 from connection import Connection
 
@@ -72,7 +73,7 @@ class Server:
             case "HELP":
                 self.handle_help(conn)
             case "LOGIN":
-                return self.handle_login(conn)
+                return self.handle_login(conn, args)
             case "PROFILE":
                 self.handle_profile(conn, session)
             case "DIR" | "SUBFOLDER" | "UPLOAD" | "DELETE" if session is None:  # file commands need a login
@@ -212,20 +213,25 @@ class Server:
         finally:
             self.release(path)
 
-    def handle_login(self, conn) -> str | None:
-        username = conn.recv(self.connection.size).decode(self.connection.format)
-        password = conn.recv(self.connection.size).decode(self.connection.format)
+    # LOGIN@<user>: challenge-response so the password never crosses the network.
+    # Server sends a random nonce; client answers sha256(nonce + sha256(password)); we compute the same from our stored hash.
+    def handle_login(self, conn, args: list[str]) -> str | None:
+        username = args[0] if args else ""
+        nonce = os.urandom(16).hex()  # new every login, so a captured answer can't be replayed
+        conn.send(f"OK@CHALLENGE@{nonce}".encode(self.connection.format))
+        answer = conn.recv(self.connection.size).decode(self.connection.format)
 
         if username not in self.users:
             conn.send("OK@User not found".encode(self.connection.format))
             return
-        if self.passwords[self.users[username]] != hashlib.sha256(password.encode()).hexdigest():
+        expected = hashlib.sha256((nonce + self.passwords[self.users[username]]).encode()).hexdigest()
+        if not hmac.compare_digest(answer, expected):
             conn.send("OK@Invalid password".encode(self.connection.format))
             return
-        
+
         conn.send(f"OK@Login successful {username}".encode(self.connection.format))
         return username
-        
+
     def handle_profile(self, conn, session: str | None):
         if session is None:
             conn.send("OK@Not logged in".encode(self.connection.format))

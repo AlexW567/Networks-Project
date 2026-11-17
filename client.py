@@ -1,3 +1,4 @@
+import hashlib
 import os
 import socket
 
@@ -56,11 +57,14 @@ class Client:
     """
     def send(self, command: str, args: list[str] = []) -> bool:
         if command == "LOGIN":
-            self.connection.client.send("LOGIN".encode(self.connection.format))
             username = input("Enter username: ")
             password = input("Enter password: ")
-            self.connection.client.send(f"{username}".encode(self.connection.format))
-            self.connection.client.send(f"{password}".encode(self.connection.format))
+            sock = self.connection.client
+            sock.send(f"LOGIN@{username}".encode(self.connection.format))
+            nonce = sock.recv(self.connection.size).decode(self.connection.format).split("@")[2]  # "OK@CHALLENGE@<nonce>"
+            # prove we know the password without sending it
+            proof = hashlib.sha256((nonce + hashlib.sha256(password.encode()).hexdigest()).encode()).hexdigest()
+            sock.send(proof.encode(self.connection.format))
         elif command == "UPLOAD":
             self.upload(args)
         else:
