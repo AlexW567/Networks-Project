@@ -86,3 +86,5 @@ cython_debug/
 
 # Files stored by the server (uploads can be GBs, never commit them)
 server_data/
+client_data/
+test/
