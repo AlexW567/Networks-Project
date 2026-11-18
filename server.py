@@ -94,7 +94,7 @@ class Server:
                 return self.handle_login(conn, args)
             case "PROFILE":
                 self.handle_profile(conn, session)
-            case "DIR" | "SUBFOLDER" | "UPLOAD" | "DELETE" if session is None:  # file commands need a login
+            case "DIR" | "SUBFOLDER" | "UPLOAD" | "DOWNLOAD" | "DELETE" if session is None:  # file commands need a login
                 conn.send("OK@Please LOGIN first.".encode(self.connection.format))
             case "DIR":
                 self.handle_dir(conn, args)
@@ -102,6 +102,8 @@ class Server:
                 self.handle_subfolder(conn, args)
             case "UPLOAD":
                 self.handle_upload(conn, args)
+            case "DOWNLOAD":
+                self.handle_download(conn, args)
             case "DELETE":
                 self.handle_delete(conn, args)
             case _:
@@ -115,6 +117,7 @@ class Server:
             "DIR [folder] - List files and folders on the server.\n" \
             "SUBFOLDER create|delete <path> - Make or remove a folder on the server.\n" \
             "UPLOAD <local file> [folder] - Upload a file to the server.\n" \
+            "DOWNLOAD <server file> [local folder] - Download a file from the server.\n" \
             "DELETE <file> - Delete a file on the server.\n" \
             "LOGOUT - Disconnect from the server.\n".encode(self.connection.format))
 
@@ -166,7 +169,12 @@ class Server:
             return
         size, dest = int(args[0]), self.safe_path(args[1])
         if dest is None or not os.path.isdir(os.path.dirname(dest)):
-            conn.send("OK@Error: server folder not found.".encode(self.connection.format))
+            conn.send(
+                "OK@Error: server folder not found. "
+                "Folders are relative to server storage (not a folder named server_data). "
+                "Create one with SUBFOLDER create <path>, or omit the folder to upload to the root."
+                .encode(self.connection.format)
+            )
             return
         if not self.claim(dest):
             conn.send("OK@Error: that file is currently being processed.".encode(self.connection.format))
@@ -197,6 +205,31 @@ class Server:
             raise ConnectionResetError  # run_client already handles this as a disconnect
         os.replace(part, dest)
         conn.send(f"OK@Uploaded {name} ({size} bytes)".encode(self.connection.format))
+
+    # DOWNLOAD@<server path>: reply READY@<size>, then send exactly <size> raw bytes in chunks
+    def handle_download(self, conn, args: list[str]):
+        if len(args) != 1:
+            conn.send("OK@Usage: DOWNLOAD <server file> [local folder]".encode(self.connection.format))
+            return
+        path = self.safe_path(args[0])
+        if path is None or not os.path.isfile(path):
+            conn.send(f"OK@Error: {args[0]} does not exist.".encode(self.connection.format))
+            return
+        if not self.claim(path):
+            conn.send("OK@Error: that file is currently being processed.".encode(self.connection.format))
+            return
+        try:
+            self.send_file(conn, args[0], path)
+        finally:
+            self.release(path)
+
+    def send_file(self, conn, name: str, src: str):
+        size = os.path.getsize(src)
+        conn.send(f"OK@READY@{size}".encode(self.connection.format))
+        with open(src, "rb") as f:
+            while chunk := f.read(65536):
+                conn.sendall(chunk)
+        conn.send(f"OK@Downloaded {name} ({size} bytes)".encode(self.connection.format))
 
     # Mark a file as in use. Returns False if another client is already using it.
     # UPLOAD, DOWNLOAD and DELETE all call this so they can't touch the same file at once.
