@@ -3,8 +3,20 @@ import socket
 import threading
 import hashlib
 import hmac
+import re
 
-from connection import Connection
+from connection import Connection, fmt_size
+
+# File naming system: uploads are stored as TS001.txt / AS001.wav / VS001.mp4 (Text, Audio, Video + running number)
+AUDIO = {".wav", ".mp3", ".flac", ".ogg", ".m4a", ".aac"}
+VIDEO = {".mp4", ".mkv", ".avi", ".mov", ".webm"}
+KIND_NAMES = {"TS": "Text", "AS": "Audio", "VS": "Video"}
+STORED_NAME = re.compile(r"^(TS|AS|VS)\d{3,}\.")  # a name that already follows the system
+
+# shortcut: anything that isn't audio/video counts as Text, add more extension lists if the demo needs them
+def prefix_for(name: str) -> str:
+    ext = os.path.splitext(name)[1].lower()
+    return "AS" if ext in AUDIO else "VS" if ext in VIDEO else "TS"
 
 
 class Server:
@@ -134,9 +146,16 @@ class Server:
         if folder is None or not os.path.isdir(folder):
             conn.send("OK@Error: folder not found.".encode(self.connection.format))
             return
-        entries = sorted(os.listdir(folder))
-        lines = [name + "/" if os.path.isdir(os.path.join(folder, name)) else name for name in entries]
-        conn.send(("OK@" + ("\n".join(lines) if lines else "(empty)")).encode(self.connection.format))
+        rows = ["Server directory:", "", f"{'Filename':<20}{'Size':<12}Type", "-" * 44]
+        for name in sorted(os.listdir(folder)):
+            full = os.path.join(folder, name)
+            if name.endswith(".part"):  # half-finished upload, not a real file yet
+                continue
+            if os.path.isdir(full):
+                rows.append(f"{name + '/':<20}{'-':<12}Folder")
+            else:
+                rows.append(f"{name:<20}{fmt_size(os.path.getsize(full)):<12}{KIND_NAMES[prefix_for(name)]}")
+        conn.send(("OK@" + "\n".join(rows)).encode(self.connection.format))
 
     # SUBFOLDER create|delete <path>: make or remove a folder inside server_data
     def handle_subfolder(self, conn, args: list[str]):
@@ -176,11 +195,15 @@ class Server:
                 .encode(self.connection.format)
             )
             return
-        if not self.claim(dest):
+        if STORED_NAME.match(os.path.basename(dest)):  # already TS001-style: the client chose this file, so overwrite rules apply
+            claimed = self.claim(dest)
+        else:  # any other name gets the next free TS/AS/VS number
+            dest, claimed = self.new_stored_path(dest), True
+        if not claimed:
             conn.send("OK@Error: that file is currently being processed.".encode(self.connection.format))
             return
         try:
-            self.receive_file(conn, args[1], size, dest)
+            self.receive_file(conn, os.path.relpath(dest, os.path.realpath(self.connection.server_data_path)).replace(os.sep, "/"), size, dest)
         finally:
             self.release(dest)  # always free the file, even if the client drops mid-upload
 
@@ -204,7 +227,7 @@ class Server:
             os.remove(part)
             raise ConnectionResetError  # run_client already handles this as a disconnect
         os.replace(part, dest)
-        conn.send(f"OK@Uploaded {name} ({size} bytes)".encode(self.connection.format))
+        conn.send(f"OK@Uploaded as {name} ({fmt_size(size)})".encode(self.connection.format))
 
     # DOWNLOAD@<server path>: reply READY@<size>, then send exactly <size> raw bytes in chunks
     def handle_download(self, conn, args: list[str]):
@@ -229,7 +252,7 @@ class Server:
         with open(src, "rb") as f:
             while chunk := f.read(65536):
                 conn.sendall(chunk)
-        conn.send(f"OK@Downloaded {name} ({size} bytes)".encode(self.connection.format))
+        conn.send(f"OK@Downloaded {name} ({fmt_size(size)})".encode(self.connection.format))
 
     # Mark a file as in use. Returns False if another client is already using it.
     # UPLOAD, DOWNLOAD and DELETE all call this so they can't touch the same file at once.
@@ -239,6 +262,19 @@ class Server:
                 return False
             self.busy.add(path)
             return True
+
+    # Pick the next free name like TS003.txt in dest's folder and claim it in one step, so two uploads can't get the same number.
+    # The number counts across ALL folders, so a stored name is unique on the whole server.
+    def new_stored_path(self, dest: str) -> str:
+        prefix, ext = prefix_for(dest), os.path.splitext(dest)[1].lower()
+        pattern = re.compile(rf"^{prefix}(\d+)\.")
+        with self.busy_lock:
+            names = [f for _, _, files in os.walk(self.connection.server_data_path) for f in files]
+            names += [os.path.basename(p) for p in self.busy]  # numbers other uploads are using right now
+            highest = max((int(m.group(1)) for f in names if (m := pattern.match(f))), default=0)
+            path = os.path.join(os.path.dirname(dest), f"{prefix}{highest + 1:03d}{ext}")
+            self.busy.add(path)
+            return path
 
     def release(self, path: str):
         with self.busy_lock:
