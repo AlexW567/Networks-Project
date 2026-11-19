@@ -284,7 +284,20 @@ class Server:
                     writer.writerow(header)
                 writer.writerow([now.strftime("%Y-%m-%d"), now.strftime("%H:%M:%S"), conn.getpeername()[0], user,
                                  operation.title(), name, f"{size / (1 << 20):.2f}", f"{seconds:.2f}", f"{rate:.2f}"])
+            self.write_table()
         print(f"[ANALYSIS] {operation.title()}: {fmt_size(size)} / {seconds:.2f} s, rate {rate:.2f} MB/s")
+
+    # Rebuild stats_table.txt from stats.csv: the same rows as a boxed table with aligned columns (caller holds stats_lock)
+    def write_table(self):
+        with open(self.stats_path, newline="") as f:
+            rows = list(csv.reader(f))
+        widths = [max(len(row[i]) for row in rows) for i in range(len(rows[0]))]
+        border = "+" + "+".join("-" * (w + 2) for w in widths) + "+"
+        # text columns (0-5) line up on the left, number columns (6+) on the right
+        line = lambda row: "| " + " | ".join(c.ljust(w) if i < 6 else c.rjust(w) for i, (c, w) in enumerate(zip(row, widths))) + " |"
+        table = [border, line(rows[0]), border, *map(line, rows[1:]), border]
+        with open(os.path.splitext(self.stats_path)[0] + "_table.txt", "w", encoding="utf-8") as f:
+            f.write("\n".join(table) + "\n")
 
     # Mark a file as in use. Returns False if another client is already using it.
     # UPLOAD, DOWNLOAD and DELETE all call this so they can't touch the same file at once.
