@@ -208,15 +208,18 @@ class Client:
                 return
         sock = self.connection.client
         sock.send(f"DOWNLOAD@{server_path}".encode(self.connection.format))
-        reply = sock.recv(self.connection.size).decode(self.connection.format)
-        parts = reply.split("@")
-        if len(parts) < 3 or parts[0] != "OK" or parts[1] != "READY" or not parts[2].isdigit():
-            self.pending = reply
+        raw = sock.recv(self.connection.size)  # bytes, not text: file data can arrive in the same read as the header
+        header, _, body = raw.partition(b"\n")  # server ends the header "OK@READY@<size>" with a newline
+        parts = header.split(b"@")
+        if len(parts) != 3 or parts[:2] != [b"OK", b"READY"] or not parts[2].isdigit() or b"\n" not in raw:
+            self.pending = raw.decode(self.connection.format, errors="replace")  # an error reply: no file data follows it
             return
         size = int(parts[2])
-        part, received, start = local + ".part", 0, time.time()
+        data, tail = body[:size], body[size:]  # tail = start of the server's final reply, if it rode along in the same read
+        part, received, start = local + ".part", len(data), time.time()
         print(f"Downloading {name}...")
         with open(part, "wb") as f:
+            f.write(data)
             while received < size:
                 chunk = sock.recv(min(65536, size - received))
                 if not chunk:
@@ -228,7 +231,12 @@ class Client:
                 self.show_progress(received, size)
         os.replace(part, local)
         self.show_stats(size, start)
-        # server's final "Downloaded" reply is picked up by main()
+        while b"\n" not in tail:  # the final reply ends with a newline; read until it is complete
+            more = sock.recv(self.connection.size)
+            if not more:
+                raise ConnectionResetError
+            tail += more
+        self.pending = tail.decode(self.connection.format).strip()  # main() prints it
 
     def main(self):
         print("FILE SHARING CLIENT v1.0")

@@ -248,11 +248,11 @@ class Server:
 
     def send_file(self, conn, name: str, src: str):
         size = os.path.getsize(src)
-        conn.send(f"OK@READY@{size}".encode(self.connection.format))
+        conn.send(f"OK@READY@{size}\n".encode(self.connection.format))  # newline marks where the header ends and file bytes begin
         with open(src, "rb") as f:
             while chunk := f.read(65536):
                 conn.sendall(chunk)
-        conn.send(f"OK@Downloaded {name} ({fmt_size(size)})".encode(self.connection.format))
+        conn.send(f"OK@Downloaded {name} ({fmt_size(size)})\n".encode(self.connection.format))  # newline so the client knows the reply is complete
 
     # Mark a file as in use. Returns False if another client is already using it.
     # UPLOAD, DOWNLOAD and DELETE all call this so they can't touch the same file at once.
