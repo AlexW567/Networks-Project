@@ -269,14 +269,21 @@ class Server:
     def record_stats(self, operation: str, conn, user: str, name: str, size: int, seconds: float):
         seconds = max(seconds, 0.001)  # an instant transfer would divide by zero
         rate = size / seconds / (1 << 20)
+        header = ["Date", "Time", "Client IP", "User", "Operation", "File", "Size (MB)", "Duration (s)", "Speed (MB/s)"]
+        now = datetime.now()
         with self.stats_lock:
+            if os.path.exists(self.stats_path):
+                with open(self.stats_path, newline="") as f:
+                    old_header = next(csv.reader(f), None)
+                if old_header != header:  # older layout: keep it as stats_old.csv instead of mixing columns
+                    os.replace(self.stats_path, self.stats_path.replace("stats.csv", "stats_old.csv"))
             is_new = not os.path.exists(self.stats_path)
             with open(self.stats_path, "a", newline="") as f:
                 writer = csv.writer(f)
                 if is_new:
-                    writer.writerow(["time", "client_ip", "user", "operation", "file", "size_bytes", "seconds", "mb_per_s"])
-                writer.writerow([datetime.now().isoformat(timespec="seconds"), conn.getpeername()[0], user, operation,
-                                 name, size, f"{seconds:.3f}", f"{rate:.2f}"])
+                    writer.writerow(header)
+                writer.writerow([now.strftime("%Y-%m-%d"), now.strftime("%H:%M:%S"), conn.getpeername()[0], user,
+                                 operation.title(), name, f"{size / (1 << 20):.2f}", f"{seconds:.2f}", f"{rate:.2f}"])
         print(f"[ANALYSIS] {operation.title()}: {fmt_size(size)} / {seconds:.2f} s, rate {rate:.2f} MB/s")
 
     # Mark a file as in use. Returns False if another client is already using it.

@@ -89,3 +89,5 @@ server_data/
 client_data/
 test/
 stats.csv
+
+stats_old.csv
