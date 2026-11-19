@@ -49,6 +49,7 @@ class Server:
         # network analysis: every finished upload/download is a row in stats.csv (next to server_data, so clients can't reach it)
         self.stats_path = os.path.join(os.path.dirname(os.path.abspath(server_data_path)), "stats.csv")
         self.stats_lock = threading.Lock()  # one thread writes the CSV at a time
+        self.response_path = os.path.join(os.path.dirname(self.stats_path), "response_times.csv")  # how fast small commands are answered
         self.clients: dict[tuple, str] = {}  # connected clients: address -> username (or "not logged in")
         self.clients_lock = threading.Lock()  # every client thread edits self.clients
         self.users = {
@@ -81,7 +82,11 @@ class Server:
                 data = conn.recv(self.connection.size).decode(self.connection.format)
                 if not data or data == "LOGOUT":  # empty data = client closed the connection
                     break
+                start = time.perf_counter()
                 new_session = self.handle_command(conn, data, session)
+                command = data.split("@")[0]
+                if session is not None and command in ("DIR", "SUBFOLDER", "DELETE", "PROFILE", "HELP"):  # small commands only; transfers have their own stats
+                    self.record_response(addr[0], session, command, time.perf_counter() - start)
                 if new_session != session:  # a login or failed login changed who this client is
                     self.update_clients(addr, new_session or "not logged in")
                 session = new_session
@@ -157,10 +162,13 @@ class Server:
             full = os.path.join(folder, name)
             if name.endswith(".part"):  # half-finished upload, not a real file yet
                 continue
-            if os.path.isdir(full):
-                rows.append(f"{name + '/':<20}{'-':<12}Folder")
-            else:
-                rows.append(f"{name:<20}{fmt_size(os.path.getsize(full)):<12}{KIND_NAMES[prefix_for(name)]}")
+            try:
+                if os.path.isdir(full):
+                    rows.append(f"{name + '/':<20}{'-':<12}Folder")
+                else:
+                    rows.append(f"{name:<20}{fmt_size(os.path.getsize(full)):<12}{KIND_NAMES[prefix_for(name)]}")
+            except FileNotFoundError:  # another client deleted this file after we listed the folder: just leave it out
+                continue
         conn.send(("OK@" + "\n".join(rows)).encode(self.connection.format))
 
     # SUBFOLDER create|delete <path>: make or remove a folder inside server_data
@@ -264,6 +272,17 @@ class Server:
                 conn.sendall(chunk)
         self.record_stats("DOWNLOAD", conn, user, name, size, time.time() - start)
         conn.send(f"OK@Downloaded {name} ({fmt_size(size)})\n".encode(self.connection.format))  # newline so the client knows the reply is complete
+
+    # Add one row to response_times.csv: how long the server took from reading a command to sending its reply (network delay not included)
+    def record_response(self, ip: str, user: str, command: str, seconds: float):
+        now = datetime.now()
+        with self.stats_lock:
+            is_new = not os.path.exists(self.response_path)
+            with open(self.response_path, "a", newline="") as f:
+                writer = csv.writer(f)
+                if is_new:
+                    writer.writerow(["Date", "Time", "Client IP", "User", "Command", "Response (ms)"])
+                writer.writerow([now.strftime("%Y-%m-%d"), now.strftime("%H:%M:%S"), ip, user, command, f"{seconds * 1000:.2f}"])
 
     # Add one row to stats.csv (header written the first time) and print an [ANALYSIS] line like the help doc
     def record_stats(self, operation: str, conn, user: str, name: str, size: int, seconds: float):
