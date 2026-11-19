@@ -88,3 +88,4 @@ cython_debug/
 server_data/
 client_data/
 test/
+stats.csv

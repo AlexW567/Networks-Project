@@ -4,6 +4,9 @@ import threading
 import hashlib
 import hmac
 import re
+import csv
+import time
+from datetime import datetime
 
 from connection import Connection, fmt_size
 
@@ -43,6 +46,9 @@ class Server:
         )
         self.busy: set[str] = set()  # files being uploaded/downloaded/deleted right now
         self.busy_lock = threading.Lock()  # threads share self.busy, so guard it
+        # network analysis: every finished upload/download is a row in stats.csv (next to server_data, so clients can't reach it)
+        self.stats_path = os.path.join(os.path.dirname(os.path.abspath(server_data_path)), "stats.csv")
+        self.stats_lock = threading.Lock()  # one thread writes the CSV at a time
         self.clients: dict[tuple, str] = {}  # connected clients: address -> username (or "not logged in")
         self.clients_lock = threading.Lock()  # every client thread edits self.clients
         self.users = {
@@ -113,9 +119,9 @@ class Server:
             case "SUBFOLDER":
                 self.handle_subfolder(conn, args)
             case "UPLOAD":
-                self.handle_upload(conn, args)
+                self.handle_upload(conn, args, session)
             case "DOWNLOAD":
-                self.handle_download(conn, args)
+                self.handle_download(conn, args, session)
             case "DELETE":
                 self.handle_delete(conn, args)
             case _:
@@ -182,7 +188,7 @@ class Server:
             conn.send(f"OK@Error: {path} is not an empty folder.".encode(self.connection.format))
 
     # UPLOAD@<size>@<server path>: reply READY, then read exactly <size> raw bytes in chunks
-    def handle_upload(self, conn, args: list[str]):
+    def handle_upload(self, conn, args: list[str], user: str):
         if len(args) != 2 or not args[0].isdigit():
             conn.send("OK@Usage: UPLOAD <local file> [server folder]".encode(self.connection.format))
             return
@@ -203,18 +209,19 @@ class Server:
             conn.send("OK@Error: that file is currently being processed.".encode(self.connection.format))
             return
         try:
-            self.receive_file(conn, os.path.relpath(dest, os.path.realpath(self.connection.server_data_path)).replace(os.sep, "/"), size, dest)
+            self.receive_file(conn, os.path.relpath(dest, os.path.realpath(self.connection.server_data_path)).replace(os.sep, "/"), size, dest, user)
         finally:
             self.release(dest)  # always free the file, even if the client drops mid-upload
 
     # The part of UPLOAD that runs while the file is claimed
-    def receive_file(self, conn, name: str, size: int, dest: str):
+    def receive_file(self, conn, name: str, size: int, dest: str, user: str):
         if os.path.exists(dest):  # ask the client before overwriting (assignment requires it)
             conn.send("OK@EXISTS".encode(self.connection.format))
             if conn.recv(self.connection.size).decode(self.connection.format).upper() != "Y":
                 conn.send("OK@Upload cancelled, file not overwritten.".encode(self.connection.format))
                 return
         conn.send("OK@READY".encode(self.connection.format))
+        start = time.time()  # transfer time = READY sent until the last byte arrived
         part, received = dest + ".part", 0  # write to .part so a dropped upload never leaves a half file
         with open(part, "wb") as f:
             while received < size:
@@ -226,11 +233,13 @@ class Server:
         if received < size:
             os.remove(part)
             raise ConnectionResetError  # run_client already handles this as a disconnect
+        seconds = time.time() - start
         os.replace(part, dest)
+        self.record_stats("UPLOAD", conn, user, name, size, seconds)
         conn.send(f"OK@Uploaded as {name} ({fmt_size(size)})".encode(self.connection.format))
 
     # DOWNLOAD@<server path>: reply READY@<size>, then send exactly <size> raw bytes in chunks
-    def handle_download(self, conn, args: list[str]):
+    def handle_download(self, conn, args: list[str], user: str):
         if len(args) != 1:
             conn.send("OK@Usage: DOWNLOAD <server file> [local folder]".encode(self.connection.format))
             return
@@ -242,17 +251,33 @@ class Server:
             conn.send("OK@Error: that file is currently being processed.".encode(self.connection.format))
             return
         try:
-            self.send_file(conn, args[0], path)
+            self.send_file(conn, args[0], path, user)
         finally:
             self.release(path)
 
-    def send_file(self, conn, name: str, src: str):
+    def send_file(self, conn, name: str, src: str, user: str):
         size = os.path.getsize(src)
         conn.send(f"OK@READY@{size}\n".encode(self.connection.format))  # newline marks where the header ends and file bytes begin
+        start = time.time()
         with open(src, "rb") as f:
             while chunk := f.read(65536):
                 conn.sendall(chunk)
+        self.record_stats("DOWNLOAD", conn, user, name, size, time.time() - start)
         conn.send(f"OK@Downloaded {name} ({fmt_size(size)})\n".encode(self.connection.format))  # newline so the client knows the reply is complete
+
+    # Add one row to stats.csv (header written the first time) and print an [ANALYSIS] line like the help doc
+    def record_stats(self, operation: str, conn, user: str, name: str, size: int, seconds: float):
+        seconds = max(seconds, 0.001)  # an instant transfer would divide by zero
+        rate = size / seconds / (1 << 20)
+        with self.stats_lock:
+            is_new = not os.path.exists(self.stats_path)
+            with open(self.stats_path, "a", newline="") as f:
+                writer = csv.writer(f)
+                if is_new:
+                    writer.writerow(["time", "client_ip", "user", "operation", "file", "size_bytes", "seconds", "mb_per_s"])
+                writer.writerow([datetime.now().isoformat(timespec="seconds"), conn.getpeername()[0], user, operation,
+                                 name, size, f"{seconds:.3f}", f"{rate:.2f}"])
+        print(f"[ANALYSIS] {operation.title()}: {fmt_size(size)} / {seconds:.2f} s, rate {rate:.2f} MB/s")
 
     # Mark a file as in use. Returns False if another client is already using it.
     # UPLOAD, DOWNLOAD and DELETE all call this so they can't touch the same file at once.
