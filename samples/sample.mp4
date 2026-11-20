@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="csrf-token" content="zco95sYCw1ZQr6GQUl4wLZLkRKBgwHT8xeEo1sjN">
+<meta name="turnstile-site-key" content="0x4AAAAAADjZnsGVz_8WFGw-">
+<meta name="turnstile-required" content="0">
+
+<style>
+    :root.dark {
+        color-scheme: dark;
+    }
+</style>
+<script>
+    window.Flux = {
+        applyAppearance (appearance) {
+            let applyDark = () => document.documentElement.classList.add('dark')
+            let applyLight = () => document.documentElement.classList.remove('dark')
+
+            if (appearance === 'system') {
+                let media = window.matchMedia('(prefers-color-scheme: dark)')
+
+                window.localStorage.removeItem('flux.appearance')
+
+                media.matches ? applyDark() : applyLight()
+            } else if (appearance === 'dark') {
+                window.localStorage.setItem('flux.appearance', 'dark')
+
+                applyDark()
+            } else if (appearance === 'light') {
+                window.localStorage.setItem('flux.appearance', 'light')
+
+                applyLight()
+            }
+        }
+    }
+
+    window.Flux.applyAppearance(window.localStorage.getItem('flux.appearance') || 'system')
+</script>
+
+<title>Dummy file generator – Download test file by size, image, CSV, PDF | dummyfiles.dev</title>
+<meta name="description" content="Dummy file generator: download a test file or create dummy files by size, image dimensions, or rows. Free, no signup—built for developers and testing.">
+<link rel="canonical" href="https://dummyfiles.dev/en/">
+<link rel="alternate" hreflang="de" href="https://dummyfiles.dev/de/">
+<link rel="alternate" hreflang="en" href="https://dummyfiles.dev/en/">
+<link rel="alternate" hreflang="es" href="https://dummyfiles.dev/es/">
+<link rel="alternate" hreflang="x-default" href="https://dummyfiles.dev/en/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dummy file generator – Download test file by size, image, CSV, PDF | dummyfiles.dev">
+<meta property="og:description" content="Dummy file generator: download a test file or create dummy files by size, image dimensions, or rows. Free, no signup—built for developers and testing.">
+<meta property="og:url" content="https://dummyfiles.dev/en/">
+<meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+            <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:site_name" content="dummyfiles.dev">
+
+<link rel="icon" href="https://dummyfiles.dev/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://dummyfiles.dev/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="https://dummyfiles.dev/favicon.svg">
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="https://dummyfiles.dev/favicon-96x96.png sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="https://dummyfiles.dev/favicon.svg" />
+<link rel="shortcut icon" href="https://dummyfiles.dev/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://dummyfiles.dev/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="dummyfiles.dev" />
+<link rel="manifest" href="https://dummyfiles.dev/site.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css?family=dm-sans:400,500,600|raleway:600,600i,700,700i|space-grotesk:600,700&display=swap" rel="stylesheet" />
+
+<!-- Cookie Consent --><script src="https://dummyfiles.dev/cookie-consent/script?id=9aa331e1824c8a88136500aff8cd73f5" defer></script><script>
+(function () {
+    var _paq = window._paq = window._paq || [];
+        _paq.push(['disableCookies']);
+        var u = "https:\/\/analytics.freece.de\/";
+    _paq.push(['setTrackerUrl', u + 'matomo.php']);
+    _paq.push(['setSiteId', "2"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+    g.async = true;
+    g.src = u + 'matomo.js';
+    s.parentNode.insertBefore(g, s);
+})();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5589740434100721" crossorigin="anonymous"></script>
+<!-- Livewire Styles --><style >[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.list-item][wire\:loading\.list-item], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none !important;}[wire\:cloak] {display: none !important;}dialog#livewire-error::backdrop {background-color: rgba(0, 0, 0, .6);}</style>
+<link rel="preload" as="style" href="https://dummyfiles.dev/build/assets/app-DDbTORBt.css" /><link rel="modulepreload" as="script" href="https://dummyfiles.dev/build/assets/app-l0sNRNKZ.js" /><link rel="stylesheet" href="https://dummyfiles.dev/build/assets/app-DDbTORBt.css" data-navigate-track="reload" /><script type="module" src="https://dummyfiles.dev/build/assets/app-l0sNRNKZ.js" data-navigate-track="reload"></script>    </head>
+    <body class="page-bg min-h-screen text-neutral-800 dark:text-neutral-100 font-sans text-base leading-[1.55] antialiased transition-colors duration-200">
+        <script>(function(){var s=sessionStorage.getItem('cc_scroll');if(s!==null){sessionStorage.removeItem('cc_scroll');if('scrollRestoration' in history)history.scrollRestoration='manual';var y=parseInt(s,10);window.addEventListener('load',function(){window.scrollTo(0,y);});}})();</script>
+        <aside id="cookies-policy" class="cookies cookies--no-js cookie-consent-theme" data-text="{&quot;more&quot;:&quot;More details&quot;,&quot;less&quot;:&quot;Less details&quot;}">
+    <div class="cookies__alert">
+        <div class="cookies__container">
+            <div class="cookies__wrapper">
+                <h2 class="cookies__title">We use cookies</h2>
+                <div class="cookies__intro">
+                    <p>This website uses cookies in order to enhance the overall user experience.</p>
+                                            <p>Take a look at our <a href="https://dummyfiles.dev/en/privacy/">Cookies Policy</a> for more information.</p>
+                                    </div>
+                <div class="cookies__actions">
+                    <form action="https://dummyfiles.dev/cookie-consent/accept-essentials" method="post" data-cookie-action="accept.essentials" class="cookiesBtn cookiesBtn--essentials">
+    <input type="hidden" name="_token" value="zco95sYCw1ZQr6GQUl4wLZLkRKBgwHT8xeEo1sjN" autocomplete="off">    <button type="submit" class="cookiesBtn__link">Only essentials</button>
+</form>
+                    <form action="https://dummyfiles.dev/cookie-consent/accept-all" method="post" data-cookie-action="accept.all" class="cookiesBtn cookiesBtn--accept">
+    <input type="hidden" name="_token" value="zco95sYCw1ZQr6GQUl4wLZLkRKBgwHT8xeEo1sjN" autocomplete="off">    <button type="submit" class="cookiesBtn__link">Accept all</button>
+</form>
+                </div>
+            </div>
+        </div>
+            <a href="#cookies-policy-customize" class="cookies__btn cookies__btn--customize">
+                <span>Customize</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M14.7559 11.9782C15.0814 11.6527 15.0814 11.1251 14.7559 10.7996L10.5893 6.63297C10.433 6.47669 10.221 6.3889 10 6.38889C9.77899 6.38889 9.56703 6.47669 9.41075 6.63297L5.24408 10.7996C4.91864 11.1251 4.91864 11.6527 5.24408 11.9782C5.56951 12.3036 6.09715 12.3036 6.42259 11.9782L10 8.40074L13.5774 11.9782C13.9028 12.3036 14.4305 12.3036 14.7559 11.9782Z" fill="currentColor"/>
+                </svg>
+            </a>
+        <div class="cookies__expandable cookies__expandable--custom" id="cookies-policy-customize">
+            <form action="https://dummyfiles.dev/cookie-consent/configure" method="post" class="cookies__customize">
+                <input type="hidden" name="_token" value="zco95sYCw1ZQr6GQUl4wLZLkRKBgwHT8xeEo1sjN" autocomplete="off">                <div class="cookies__sections">
+                                                            <div class="cookies__section">
+                        <label for="cookies-policy-check-essentials" class="cookies__category">
+                                                            <input type="hidden" name="categories[]" value="essentials" />
+                                <input type="checkbox" name="categories[]" value="essentials" id="cookies-policy-check-essentials" checked="checked" disabled="disabled" />
+                                                        <span class="cookies__box">
+                                <strong class="cookies__label">
+                                    Notwendige Cookies
+                                                                            <span class="cookies__status">Accepted</span>
+                                                                    </strong>
+                            </span>
+                                                            <p class="cookies__info">Es gibt einige Cookies, die wir einsetzen müssen, damit bestimmte Webseiten funktionieren. Aus diesem Grund benötigen sie nicht Ihre Zustimmung.</p>
+                                                    </label>
+
+                        <div class="cookies__expandable" id="cookies-policy-essentials">
+                            <ul class="cookies__definitions">
+                                                                <li class="cookies__cookie">
+                                    <p class="cookies__name">dummyfilesdev_cookie_consent</p>
+                                    <p class="cookies__duration">1 year</p>
+                                                                            <p class="cookies__description">Wird verwendet, um die Cookie-Einstellungen des Benutzers zu speichern.</p>
+                                                                    </li>
+                                                                <li class="cookies__cookie">
+                                    <p class="cookies__name">dummyfilesdev-session</p>
+                                    <p class="cookies__duration">2 hours</p>
+                                                                            <p class="cookies__description">Dient zur Identifizierung der Browsing-Sitzung des Nutzers.</p>
+                                                                    </li>
+                                                                <li class="cookies__cookie">
+                                    <p class="cookies__name">XSRF-TOKEN</p>
+                                    <p class="cookies__duration">2 hours</p>
+                                                                            <p class="cookies__description">Wird verwendet, um sowohl den Nutzer als auch unsere Website gegen Cross-Site Request Forgery-Angriffe zu schützen.</p>
+                                                                    </li>
+                                                            </ul>
+                        </div>
+                        <a href="#cookies-policy-essentials" class="cookies__details">More details</a>
+                    </div>
+                                                            <div class="cookies__section">
+                        <label for="cookies-policy-check-analytics" class="cookies__category">
+                                                            <input
+                                    type="checkbox"
+                                    name="categories[]"
+                                    value="analytics"
+                                    id="cookies-policy-check-analytics"
+                                                                    />
+                                                        <span class="cookies__box">
+                                <strong class="cookies__label">
+                                    Analytics Cookies
+                                                                    </strong>
+                            </span>
+                                                            <p class="cookies__info">Wir verwenden diese Cookies für interne Forschungszwecke, um herauszufinden, wie wir den Service für alle unsere Nutzer verbessern können. Diese Cookies bewerten, wie Sie mit unserer Website interagieren.</p>
+                                                    </label>
+
+                        <div class="cookies__expandable" id="cookies-policy-analytics">
+                            <ul class="cookies__definitions">
+                                                                <li class="cookies__cookie">
+                                    <p class="cookies__name">google_tag_manager</p>
+                                    <p class="cookies__duration">1 year</p>
+                                                                            <p class="cookies__description">Lädt Google Tag Manager (Analytics/Marketing) nach Ihrer Zustimmung.</p>
+                                                                    </li>
+                                                                <li class="cookies__cookie">
+                                    <p class="cookies__name">_pk_id</p>
+                                    <p class="cookies__duration">1 year</p>
+                                                                            <p class="cookies__description">Matomo: speichert eine anonyme Besucherkennung. Der tatsächliche Cookie-Name enthält Site-ID und Hash (z. B. _pk_id.1.…).</p>
+                                                                    </li>
+                                                                <li class="cookies__cookie">
+                                    <p class="cookies__name">_pk_ses</p>
+                                    <p class="cookies__duration">30 minutes</p>
+                                                                            <p class="cookies__description">Matomo: Kurzzeit-Cookie für die Sitzung (typisch ca. 30 Minuten).</p>
+                                                                    </li>
+                                                                <li class="cookies__cookie">
+                                    <p class="cookies__name">_pk_ref</p>
+                                    <p class="cookies__duration">5 months</p>
+                                                                            <p class="cookies__description">Matomo: speichert die Herkunft des Besuchs (Referrer).</p>
+                                                                    </li>
+                                                            </ul>
+                        </div>
+                        <a href="#cookies-policy-analytics" class="cookies__details">More details</a>
+                    </div>
+                                    </div>
+                <div class="cookies__save">
+                    <button type="submit" class="cc-btn cc-btn--primary">Save settings</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</aside>
+
+
+
+<script data-cookie-consent>
+    (()=>{var e,t={148:()=>{var e=document.querySelector("#cookies-policy"),t=document.querySelector(".cookiereset");if(t&&t.addEventListener("submit",(function(e){return function(e){if(e.preventDefault(),document.querySelector("#cookies-policy"))return;window.LaravelCookieConsent.reset()}(e)})),e){var o=e.querySelector(".cookies__btn--customize"),n=e.querySelectorAll(".cookies__details"),i=e.querySelector(".cookiesBtn--accept"),r=e.querySelector(".cookiesBtn--essentials"),s=e.querySelector(".cookies__customize"),c=JSON.parse(e.getAttribute("data-text"));e.removeAttribute("data-text"),e.classList.remove("cookies--no-js"),e.classList.add("cookies--closing"),setTimeout((function(){e.classList.remove("cookies--closing")}),310);for(var u=0;u<n.length;u++)n[u].addEventListener("click",(function(e){return a(e,e.target,!1)}));o.addEventListener("click",(function(e){return a(e,o)})),i.addEventListener("submit",(function(e){return function(e){e.preventDefault(),window.LaravelCookieConsent.acceptAll(),l()}(e)})),r.addEventListener("submit",(function(e){return function(e){e.preventDefault(),window.LaravelCookieConsent.acceptEssentials(),l()}(e)})),s.addEventListener("submit",(function(e){return function(e){e.preventDefault(),window.LaravelCookieConsent.configure(new FormData(e.target)),l()}(e)})),window.addEventListener("resize",(function(t){window.innerHeight<=e.offsetHeight?e.querySelector(".cookies__sections").style.maxHeight="50vh":e.querySelector(".cookies__sections").removeAttribute("style")}))}function a(t,o){var n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];t.preventDefault(),t.target.blur();var i=e.querySelector(o.getAttribute("href")),r=i.firstElementChild.offsetHeight,s=i.classList.contains("cookies__expandable--open");i.setAttribute("style","height:"+(s?r:0)+"px"),function(e,t,o){if(e)return;o.target.textContent=t?c.more:c.less}(n,s,t),setTimeout((function(){i.classList.toggle("cookies__expandable--open"),i.setAttribute("style","height:"+(s?0:r)+"px"),setTimeout((function(){i.removeAttribute("style")}),310)}),10),function(t,o){if(!t)return;var n=e.querySelector(".cookies__container"),i=n.firstElementChild.offsetHeight;n.setAttribute("style","height:"+(o?0:i)+"px"),setTimeout(function(e){return function(){e.classList.toggle("cookies--show"),n.classList.toggle("cookies__container--hide"),n.setAttribute("style","height:"+(o?i:0)+"px"),setTimeout((function(){n.removeAttribute("style")}),320)}}(e),10)}(n,s)}function l(){e.classList.add("cookies--closing"),setTimeout(function(e){return function(){e.parentNode.querySelectorAll("[data-cookie-consent]").forEach((function(e){e.parentNode.removeChild(e)})),e.parentNode.removeChild(e)}}(e),210)}},985:()=>{}},o={};function n(e){var i=o[e];if(void 0!==i)return i.exports;var r=o[e]={exports:{}};return t[e](r,r.exports,n),r.exports}n.m=t,e=[],n.O=(t,o,i,r)=>{if(!o){var s=1/0;for(l=0;l<e.length;l++){for(var[o,i,r]=e[l],c=!0,u=0;u<o.length;u++)(!1&r||s>=r)&&Object.keys(n.O).every((e=>n.O[e](o[u])))?o.splice(u--,1):(c=!1,r<s&&(s=r));if(c){e.splice(l--,1);var a=i();void 0!==a&&(t=a)}}return t}r=r||0;for(var l=e.length;l>0&&e[l-1][2]>r;l--)e[l]=e[l-1];e[l]=[o,i,r]},n.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{var e={879:0,314:0};n.O.j=t=>0===e[t];var t=(t,o)=>{var i,r,[s,c,u]=o,a=0;if(s.some((t=>0!==e[t]))){for(i in c)n.o(c,i)&&(n.m[i]=c[i]);if(u)var l=u(n)}for(t&&t(o);a<s.length;a++)r=s[a],n.o(e,r)&&e[r]&&e[r][0](),e[r]=0;return n.O(l)},o=self.webpackChunklaravel_cookie_consent=self.webpackChunklaravel_cookie_consent||[];o.forEach(t.bind(null,0)),o.push=t.bind(null,o.push.bind(o))})(),n.O(void 0,[314],(()=>n(148)));var i=n.O(void 0,[314],(()=>n(985)));i=n.O(i)})();
+</script>
+<script data-cookie-consent>
+(function () {
+    // Prevent anchor-based scroll while keeping the package's accordion logic intact.
+    var modal = document.getElementById('cookies-policy');
+    if (!modal) return;
+    modal.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        var real = a.getAttribute('href');
+        a.setAttribute('href', 'javascript:void(0)');
+        a.getAttribute = function (name) {
+            return name === 'href' ? real : Element.prototype.getAttribute.call(this, name);
+        };
+    });
+
+    function setOptionalCategories(on) {
+        modal.querySelectorAll('.cookies__category input[type="checkbox"]:not(:disabled)').forEach(function (cb) {
+            cb.checked = on;
+        });
+    }
+
+    function deleteAnalyticsCookies() {
+        var domain = location.hostname.replace(/^www\./, '');
+        var cookies = document.cookie.split(';').map(function (c) { return c.trim().split('=')[0]; });
+        cookies.forEach(function (name) {
+            if (!/^(_ga|_gid|_gat)/.test(name) && !/^_pk_/.test(name)) return;
+            ['/', window.location.pathname].forEach(function (path) {
+                [domain, '.' + domain, 'www.' + domain].forEach(function (d) {
+                    document.cookie = name + '=; Max-Age=0; path=' + path + '; domain=' + d + ';';
+                });
+            });
+        });
+    }
+
+    function wrapConsentApi() {
+        var api = window.LaravelCookieConsent;
+        if (!api || api.__cfgReloadWrapped) {
+            return Boolean(api && api.__cfgReloadWrapped);
+        }
+
+        api.__cfgReloadWrapped = true;
+
+        var acceptAll = api.acceptAll.bind(api);
+        api.acceptAll = function () {
+            return acceptAll().then(function () {
+                window.location.reload();
+            });
+        };
+
+        var acceptEssentials = api.acceptEssentials.bind(api);
+        api.acceptEssentials = function () {
+            return acceptEssentials().then(function () {
+                deleteAnalyticsCookies();
+                window.location.reload();
+            });
+        };
+
+        var configure = api.configure.bind(api);
+        api.configure = function (formData) {
+            var categories = formData && formData.getAll ? formData.getAll('categories[]') : [];
+            return configure(formData).then(function () {
+                if (categories.indexOf('analytics') === -1) {
+                    deleteAnalyticsCookies();
+                }
+                window.location.reload();
+            });
+        };
+
+        return true;
+    }
+
+    var acceptAllForm = modal.querySelector('.cookiesBtn--accept');
+    if (acceptAllForm) {
+        acceptAllForm.addEventListener('submit', function () {
+            setOptionalCategories(true);
+        });
+    }
+    var acceptEssentialsForm = modal.querySelector('.cookiesBtn--essentials');
+    if (acceptEssentialsForm) {
+        acceptEssentialsForm.addEventListener('submit', function () {
+            setOptionalCategories(false);
+        });
+    }
+
+    if (!wrapConsentApi()) {
+        window.addEventListener('load', wrapConsentApi);
+    }
+}());
+</script>
+<style data-cookie-consent>
+    #cookies-policy.cookies{bottom:0;font-size:16px;max-height:100%;max-width:100%;overflow:auto;position:fixed;right:0;transition:transform .2s ease-out,opacity .2s ease-out;z-index:9999}#cookies-policy.cookies--closing{opacity:0;transform:translateY(10px)}#cookies-policy.cookies--show .cookies__btn--customize{border-bottom:1px solid #e7e8e9;border-top:none}#cookies-policy.cookies--show .cookies__btn svg{transform:rotate(180deg)}#cookies-policy.cookies--no-js .cookies__expandable:target,#cookies-policy.cookies--no-js .cookies__section .cookies__expandable{height:auto;opacity:1;transition:height .3s ease-out,opacity .3s ease-out;visibility:visible}#cookies-policy.cookies--no-js .cookies__details{display:none}#cookies-policy.cookies--no-js .cookies__sections{max-height:-moz-fit-content;max-height:fit-content}#cookies-policy.cookies--no-js svg{display:none}#cookies-policy .cookies__expandable{display:block;height:0;opacity:0;overflow:hidden;transition:height .3s ease-out,opacity .3s ease-out,visibility 0s linear .3s;visibility:hidden}#cookies-policy .cookies__expandable--open{height:auto;opacity:1;transition:height .3s ease-out,opacity .3s ease-out;visibility:visible}#cookies-policy .cookies__alert{background:#fff;border:1px solid #e7e8e9;border-radius:8px;box-shadow:0 12px 12px -8px rgba(0,0,0,.08),0 0 4px rgba(0,0,0,.04);margin:4%;max-height:90%;max-width:90%;width:22em}#cookies-policy .cookies__container{display:block;height:auto;opacity:1;overflow:hidden;transition:height .3s ease-out,opacity .3s ease-out,visibility 0s linear .1s;visibility:visible}#cookies-policy .cookies__container--hide{height:0;opacity:0;transition:height .3s ease-out,opacity .3s ease-out,visibility 0s linear .3s;visibility:hidden}#cookies-policy .cookies__wrapper{padding:1em 1.5em}#cookies-policy .cookies__title{color:#2c2e30;font-weight:700;line-height:1.4em;margin-bottom:.8em}#cookies-policy .cookies__intro{color:#2c2e30;font-size:.875em;font-weight:450;line-height:1.4em}#cookies-policy .cookies__intro p{margin-top:1em}#cookies-policy .cookies__intro p:first-child{margin-top:0}#cookies-policy .cookies__intro a{color:inherit;text-decoration:underline;transition:color .2s ease-out}#cookies-policy .cookies__intro a:focus,#cookies-policy .cookies__intro a:hover{color:#7959ef}#cookies-policy .cookies__actions{display:flex;flex-direction:column;gap:4px;justify-content:space-between;margin-top:1em}#cookies-policy .cookies__btn--customize{align-items:center;border-top:1px solid #e7e8e9;color:#2c2e30;display:flex;font-size:.875em;font-weight:600;justify-content:space-between;line-height:1em;padding:1.125em 24px;position:relative;text-decoration:none}#cookies-policy .cookies__btn svg{transition:transform .2s ease-out}#cookies-policy .cookies__sections{max-height:450px;overflow-y:scroll}#cookies-policy .cookies__section{padding:0 1.5em}#cookies-policy .cookies__section+.cookies__section{border-top:1px solid #eee}#cookies-policy .cookies__box,#cookies-policy .cookies__category{display:block;overflow:hidden;position:relative}#cookies-policy .cookies__category input{display:block;margin:0;padding:0;position:absolute;right:105%;top:0}#cookies-policy .cookies__box{cursor:pointer;line-height:1.4em;padding:1em 3em 1em 0}#cookies-policy .cookies__box:after,#cookies-policy .cookies__box:before{border-radius:1.4em;content:"";display:block;position:absolute;top:50%}#cookies-policy .cookies__box:after{background:#e7e8e9;height:1.4em;margin-top:-.7em;right:0;transition:background .2s ease-out,opacity .2s ease-out;width:2.5em;z-index:0}#cookies-policy .cookies__box:before{background:#fff;height:1em;margin-top:-.5em;right:.75em;transform:translateX(-.55em);transition:transform .2s ease-out;width:1em;z-index:1}#cookies-policy .cookies__category input:checked+.cookies__box:after{background:#7959ef;opacity:1}#cookies-policy .cookies__category input:disabled+.cookies__box:after{opacity:.6}#cookies-policy .cookies__category input:checked+.cookies__box:before{transform:translateX(.55em)}#cookies-policy .cookies__label{color:#2c2e30;font-size:.875em;font-weight:600}#cookies-policy .cookies__info{color:#2c2e30;font-size:.875em;font-weight:450;line-height:1.4em}#cookies-policy .cookies__details{color:#7959ef;display:block;font-size:.875em;margin:.625em 0 .9em;transition:color .2s ease-out}#cookies-policy .cookies__details:focus,#cookies-policy .cookies__details:hover{color:#7959ef}#cookies-policy .cookies__definitions{color:#676767;font-size:.875em;line-height:1.2em;padding-top:.8em}#cookies-policy .cookies__cookie+.cookies__cookie{margin-top:1em}#cookies-policy .cookies__name{color:#8a8e92;display:inline;font-weight:600;line-height:22px}#cookies-policy .cookies__duration{color:#8a8e92;display:inline;text-align:right}#cookies-policy .cookies__description{color:#8a8e92;display:block;line-height:120%;padding-top:.3em;text-align:left;width:100%}#cookies-policy .cookies__save{border-top:1px solid #e7e8e9;display:flex;justify-content:flex-end;margin-top:.4em;padding:.75em 1.5em}#cookies-policy .cookiesBtn{width:100%}#cookies-policy .cookiesBtn__link{background:#7959ef;border:1px solid #7959ef;border-radius:4px;color:#fff;cursor:pointer;display:block;font:inherit;font-size:14px;font-weight:600;line-height:1em;margin:0;overflow:hidden;padding:.86em 1em;text-align:center;text-decoration:none;text-overflow:ellipsis;transition:opacity .2s ease-out;white-space:nowrap;width:100%}#cookies-policy .cookiesBtn__link:focus,#cookies-policy .cookiesBtn__link:hover{opacity:.8}
+
+
+    /* Theme overrides – loaded after package CSS for specificity */
+    #cookies-policy.cookie-consent-theme .cookies__alert {
+        background: var(--color-white, #fff);
+        border: 1px solid var(--color-neutral-200, #e4e4e7);
+        border-radius: 14px;
+        box-shadow: 0 12px 24px -8px rgba(0,0,0,.1), 0 0 4px rgba(0,0,0,.04);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookies__alert,
+    html.dark #cookies-policy.cookie-consent-theme .cookies__alert {
+        background: var(--color-neutral-800, #27272a);
+        border-color: var(--color-neutral-700, #3f3f46);
+        box-shadow: 0 12px 24px -8px rgba(0,0,0,.3), 0 0 4px rgba(0,0,0,.2);
+    }
+    #cookies-policy.cookie-consent-theme .cookies__title { color: var(--color-neutral-900, #18181b); font-weight: 700; }
+    .dark #cookies-policy.cookie-consent-theme .cookies__title { color: var(--color-neutral-50, #fafafa); }
+    #cookies-policy.cookie-consent-theme .cookies__intro,
+    #cookies-policy.cookie-consent-theme .cookies__intro p { color: var(--color-neutral-700, #3f3f46); }
+    .dark #cookies-policy.cookie-consent-theme .cookies__intro,
+    .dark #cookies-policy.cookie-consent-theme .cookies__intro p { color: var(--color-neutral-300, #d4d4d8); }
+    #cookies-policy.cookie-consent-theme .cookies__intro a { color: var(--color-accent); text-decoration: none; }
+    #cookies-policy.cookie-consent-theme .cookies__intro a:hover { text-decoration: underline; }
+
+    /* Buttons – äußere Form erhält alle visuellen Styles */
+    #cookies-policy.cookie-consent-theme .cookies__actions {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 1em;
+    }
+    #cookies-policy.cookie-consent-theme .cookiesBtn {
+        display: block;
+        width: 100%;
+        border-radius: 10px;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+    }
+    /* Innerer Submit-Button: transparent, erbt alles vom Form-Container */
+    #cookies-policy.cookie-consent-theme .cookiesBtn .cookiesBtn__link {
+        all: unset !important;
+        display: block !important;
+        width: 100% !important;
+        padding: .5rem 1rem !important;
+        font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif !important;
+        font-size: .875rem !important;
+        font-weight: 500 !important;
+        line-height: 1.4 !important;
+        text-align: center !important;
+        color: inherit !important;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
+        box-sizing: border-box !important;
+        border-radius: 10px !important;
+    }
+    #cookies-policy.cookie-consent-theme .cookiesBtn--essentials {
+        background: var(--color-neutral-100, #f4f4f5);
+        color: var(--color-neutral-800, #27272a);
+        border: 1px solid var(--color-neutral-200, #e4e4e7);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookiesBtn--essentials {
+        background: var(--color-neutral-700, #3f3f46);
+        color: var(--color-neutral-200, #e4e4e7);
+        border-color: var(--color-neutral-600, #52525b);
+    }
+    #cookies-policy.cookie-consent-theme .cookiesBtn--essentials:hover,
+    #cookies-policy.cookie-consent-theme .cookiesBtn--essentials:focus-within {
+        background: var(--color-neutral-200, #e4e4e7);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookiesBtn--essentials:hover,
+    .dark #cookies-policy.cookie-consent-theme .cookiesBtn--essentials:focus-within {
+        background: var(--color-neutral-600, #52525b);
+    }
+    #cookies-policy.cookie-consent-theme .cookiesBtn--accept {
+        background: var(--color-accent);
+        color: var(--color-accent-foreground);
+        border: 1px solid var(--color-accent);
+    }
+    #cookies-policy.cookie-consent-theme .cookiesBtn--accept:hover {
+        opacity: .88;
+    }
+
+    /* Customize-Zeile */
+    #cookies-policy.cookie-consent-theme .cookies__btn--customize {
+        color: var(--color-neutral-800, #27272a);
+        border-color: var(--color-neutral-200, #e4e4e7);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookies__btn--customize {
+        color: var(--color-neutral-200, #e4e4e7);
+        border-color: var(--color-neutral-700, #3f3f46);
+    }
+    #cookies-policy.cookie-consent-theme.cookies--show .cookies__btn--customize {
+        border-bottom: 1px solid var(--color-neutral-200, #e4e4e7);
+    }
+    .dark #cookies-policy.cookie-consent-theme.cookies--show .cookies__btn--customize {
+        border-bottom-color: var(--color-neutral-700, #3f3f46);
+    }
+    #cookies-policy.cookie-consent-theme .cookies__btn svg {
+        color: var(--color-neutral-600, #52525b);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookies__btn svg {
+        color: var(--color-neutral-400, #a1a1aa);
+    }
+
+    /* Anpassen: Intro + Accept-Buttons sichtbar lassen */
+    #cookies-policy.cookie-consent-theme .cookies__container--hide {
+        height: auto !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        overflow: visible !important;
+    }
+
+    /* Sections & Toggle */
+    #cookies-policy.cookie-consent-theme .cookies__section + .cookies__section {
+        border-top-color: var(--color-neutral-200, #e4e4e7);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookies__section + .cookies__section {
+        border-top-color: var(--color-neutral-700, #3f3f46);
+    }
+    #cookies-policy.cookie-consent-theme .cookies__category,
+    #cookies-policy.cookie-consent-theme .cookies__box {
+        overflow: visible;
+    }
+    /* Checkbox über den Schalter legen, sonst schluckt overflow:hidden die Klicks */
+    #cookies-policy.cookie-consent-theme .cookies__category input[type="checkbox"] {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 2.5em;
+        height: 1.4em;
+        margin: -0.7em 0 0 0;
+        padding: 0;
+        opacity: 0;
+        z-index: 3;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        display: block;
+    }
+    #cookies-policy.cookie-consent-theme .cookies__category input[type="checkbox"]:disabled {
+        cursor: not-allowed;
+    }
+    #cookies-policy.cookie-consent-theme .cookies__box::after {
+        background: var(--color-neutral-200, #e4e4e7);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookies__box::after {
+        background: var(--color-neutral-600, #52525b);
+    }
+    #cookies-policy.cookie-consent-theme .cookies__category input:checked + .cookies__box::after {
+        background: var(--color-accent);
+        opacity: 1;
+    }
+    #cookies-policy.cookie-consent-theme .cookies__category input:checked + .cookies__box::before {
+        transform: translateX(0.55em);
+    }
+    #cookies-policy.cookie-consent-theme .cookies__status {
+        margin-left: 0.4em;
+        font-size: 0.75em;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+    }
+    /* Lange Infotexte ausblenden, sonst sieht man nur den gesperrten „Notwendige“-Schalter */
+    #cookies-policy.cookie-consent-theme .cookies__info {
+        display: none;
+    }
+    #cookies-policy.cookie-consent-theme .cookies__box {
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+    }
+    #cookies-policy.cookie-consent-theme .cookies__label {
+        color: var(--color-neutral-900, #18181b);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookies__label {
+        color: var(--color-neutral-100, #f4f4f5);
+    }
+    #cookies-policy.cookie-consent-theme .cookies__info {
+        color: var(--color-neutral-700, #3f3f46);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookies__info {
+        color: var(--color-neutral-300, #d4d4d8);
+    }
+    #cookies-policy.cookie-consent-theme .cookies__details {
+        color: var(--color-accent);
+    }
+    #cookies-policy.cookie-consent-theme .cookies__details:hover { text-decoration: underline; }
+    #cookies-policy.cookie-consent-theme .cookies__definitions,
+    #cookies-policy.cookie-consent-theme .cookies__name,
+    #cookies-policy.cookie-consent-theme .cookies__duration,
+    #cookies-policy.cookie-consent-theme .cookies__description {
+        color: var(--color-neutral-500, #71717a);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookies__definitions,
+    .dark #cookies-policy.cookie-consent-theme .cookies__name,
+    .dark #cookies-policy.cookie-consent-theme .cookies__duration,
+    .dark #cookies-policy.cookie-consent-theme .cookies__description {
+        color: var(--color-neutral-400, #a1a1aa);
+    }
+    #cookies-policy.cookie-consent-theme .cookies__save {
+        border-top-color: var(--color-neutral-200, #e4e4e7);
+    }
+    .dark #cookies-policy.cookie-consent-theme .cookies__save {
+        border-top-color: var(--color-neutral-700, #3f3f46);
+    }
+</style>
+        <div class="app">
+                        
+                        <div id="lang-hint" class="lang-hint" role="note" hidden
+                 data-current="en"
+                 data-hints="{&quot;de&quot;:{&quot;text&quot;:&quot;Diese Seite gibt es auch auf Deutsch.&quot;,&quot;url&quot;:&quot;/de/&quot;},&quot;en&quot;:{&quot;text&quot;:&quot;This page is also available in English.&quot;,&quot;url&quot;:&quot;/en/&quot;},&quot;es&quot;:{&quot;text&quot;:&quot;Esta página también está disponible en español.&quot;,&quot;url&quot;:&quot;/es/&quot;}}">
+                <a href="#" class="lang-hint__link"></a>
+                <button type="button" class="lang-hint__close" aria-label="Close">×</button>
+            </div>
+            <header class="header">
+                <div class="header__row !mb-6 sm:!mb-3">
+                    <p class="header__title">
+                        <a href="https://dummyfiles.dev/en/" class="logo no-underline text-inherit hover:opacity-90">
+                            <span class="logo__prefix">dummy</span><span class="logo__highlight">files</span><span class="logo__tld">.dev</span>
+                        </a>
+                    </p>
+                    
+                    <button type="button" class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="header-menu">
+                        <span class="hamburger__icon" aria-hidden="true">
+                            <svg class="hamburger__bars" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                            <svg class="hamburger__close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                                <h1 id="page-heading" class="page-heading">Dummy file generator</h1>
+                <p class="subtitle">Create dummy files with the free generator for upload and data transfer tests, or when you just need “something, like 5 MB”. Download test file completely free–no signup.</p>
+                <div class="free-badge-wrap">
+                    <span class="free-badge">100% free</span>
+                </div>
+                                
+                <div class="header__actions">
+                    <span class="lang-switcher" aria-label="Language">
+                                                                                                            <a href="/de/" class="lang-switcher__link" hreflang="de">DE</a>
+                                                                                                                <span class="lang-switcher__current" aria-current="true">EN</span>
+                                                                                                                <a href="/es/" class="lang-switcher__link" hreflang="es">ES</a>
+                                                                        </span>
+                    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                        <span class="icon-sun" aria-hidden="true">☀</span>
+                        <span class="icon-moon" aria-hidden="true">☾</span>
+                    </button>
+                </div>
+                <div class="header__menu" id="header-menu" role="menu" hidden>
+                    <div class="header__menu__inner">
+                        <span class="lang-switcher lang-switcher--menu" aria-label="Language">
+                                                                                                <a href="/de/" class="lang-switcher__link" hreflang="de">DE</a>
+                                                                                                                                <span class="lang-switcher__current" aria-current="true">EN</span>
+                                                                                                                                <a href="/es/" class="lang-switcher__link" hreflang="es">ES</a>
+                                                                                    </span>
+                        <button type="button" class="theme-toggle theme-toggle--menu" aria-label="Toggle theme">
+                            <span class="icon-sun" aria-hidden="true">☀</span>
+                            <span class="icon-moon" aria-hidden="true">☾</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="header__menu-backdrop" id="header-menu-backdrop" aria-hidden="true" hidden></div>
+            </header>
+
+            <div id="download-page-alert"
+                 class="download-page-alert"
+                 role="alert"
+                 data-alert-kind="rate-limit"
+                  hidden >
+                <p class="download-page-alert__text"></p>
+            </div>
+
+            <div wire:snapshot="{&quot;data&quot;:{&quot;tab&quot;:&quot;file&quot;,&quot;pageKey&quot;:null,&quot;fileType&quot;:&quot;bin&quot;,&quot;fileSizeNumber&quot;:&quot;100&quot;,&quot;fileSizeUnit&quot;:&quot;MB&quot;,&quot;fileFilename&quot;:&quot;&quot;,&quot;imageWidth&quot;:&quot;1920&quot;,&quot;imageHeight&quot;:&quot;1080&quot;,&quot;imageFormat&quot;:&quot;png&quot;,&quot;imageBg&quot;:&quot;#ffffff&quot;,&quot;imageFilename&quot;:&quot;&quot;,&quot;imageAdvancedOpen&quot;:false,&quot;textChars&quot;:&quot;1000&quot;,&quot;textFormat&quot;:&quot;txt&quot;,&quot;textType&quot;:&quot;lorem&quot;,&quot;textFilename&quot;:&quot;&quot;,&quot;csvCols&quot;:&quot;3&quot;,&quot;csvRows&quot;:&quot;1000&quot;,&quot;csvFilename&quot;:&quot;&quot;,&quot;pdfPages&quot;:&quot;5&quot;,&quot;pdfFilename&quot;:&quot;&quot;,&quot;qrData&quot;:&quot;https:\/\/dummyfiles.dev&quot;,&quot;qrFormat&quot;:&quot;png&quot;,&quot;qrSize&quot;:&quot;300&quot;,&quot;qrFilename&quot;:&quot;&quot;,&quot;jsonRecords&quot;:&quot;100&quot;,&quot;jsonKeys&quot;:&quot;&quot;,&quot;jsonFilename&quot;:&quot;&quot;,&quot;eicarExt&quot;:&quot;exe&quot;,&quot;eicarFilename&quot;:&quot;&quot;,&quot;videoSizeNumber&quot;:&quot;10&quot;,&quot;videoSizeUnit&quot;:&quot;MB&quot;,&quot;videoTarget&quot;:&quot;size&quot;,&quot;videoSeconds&quot;:&quot;10&quot;,&quot;videoWidth&quot;:&quot;1920&quot;,&quot;videoHeight&quot;:&quot;1080&quot;,&quot;videoFormat&quot;:&quot;mp4&quot;,&quot;videoFilename&quot;:&quot;&quot;,&quot;audioSeconds&quot;:&quot;10&quot;,&quot;audioSignal&quot;:&quot;beep&quot;,&quot;audioFilename&quot;:&quot;&quot;},&quot;memo&quot;:{&quot;id&quot;:&quot;7ODz4rArx5GAQhY5xW3P&quot;,&quot;name&quot;:&quot;home&quot;,&quot;path&quot;:&quot;en&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[&quot;2407730782-0&quot;],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;,&quot;islands&quot;:[]},&quot;checksum&quot;:&quot;b174eadf4b62793b3a2cb280183eb9603ae2cb65ead3025b545d4f5de064e42c&quot;}" wire:effects="{&quot;scripts&quot;:{&quot;2407730782-0&quot;:&quot;&lt;script&gt;\n    const tabPages = JSON.parse(document.getElementById(&#039;generator-tab-urls&#039;)?.textContent || &#039;{}&#039;);\n    function redirectLegacyTabHash() {\n        const hash = (window.location.hash || &#039;&#039;).replace(\/^#\/, &#039;&#039;).toLowerCase();\n        if (!hash) {\n            return;\n        }\n        const target = tabPages[hash];\n        if (!target) {\n            if (hash === &#039;file&#039;) {\n                history.replaceState(null, &#039;&#039;, window.location.pathname + window.location.search);\n            }\n            return;\n        }\n        const targetPath = new URL(target, window.location.origin).pathname.replace(\/\\\/?$\/, &#039;\/&#039;);\n        const currentPath = window.location.pathname.replace(\/\\\/?$\/, &#039;\/&#039;);\n        if (targetPath === currentPath) {\n            history.replaceState(null, &#039;&#039;, window.location.pathname + window.location.search);\n            return;\n        }\n        window.location.replace(target);\n    }\n    redirectLegacyTabHash();\n    window.addEventListener(&#039;hashchange&#039;, redirectLegacyTabHash);\n&lt;\/script&gt;\n    &quot;}}" wire:id="7ODz4rArx5GAQhY5xW3P" wire:name="home" class="content-wrap">
+<nav class="tabs">
+    <!--[if BLOCK]><![endif]-->    <button type="button" wire:click="$set('tab', 'file')" class="tab tab--active" role="tab" aria-selected="true" aria-controls="tab-panel-file">
+        File size
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </button>
+<!--[if ENDBLOCK]><![endif]-->    <!--[if BLOCK]><![endif]-->    <a href="https://dummyfiles.dev/en/dummy-placeholder-image-generator/" class="tab">
+        Image
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </a>
+<!--[if ENDBLOCK]><![endif]-->    <!--[if BLOCK]><![endif]-->    <a href="https://dummyfiles.dev/en/dummy-text-generator/" class="tab">
+        Text
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </a>
+<!--[if ENDBLOCK]><![endif]-->    <!--[if BLOCK]><![endif]-->    <a href="https://dummyfiles.dev/en/dummy-json-generator/" class="tab">
+        JSON
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </a>
+<!--[if ENDBLOCK]><![endif]-->    <!--[if BLOCK]><![endif]-->    <a href="https://dummyfiles.dev/en/dummy-csv-generator/" class="tab">
+        CSV
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </a>
+<!--[if ENDBLOCK]><![endif]-->    <!--[if BLOCK]><![endif]-->    <a href="https://dummyfiles.dev/en/dummy-pdf-generator/" class="tab">
+        PDF
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </a>
+<!--[if ENDBLOCK]><![endif]-->    <!--[if BLOCK]><![endif]-->    <a href="https://dummyfiles.dev/en/dummy-video-generator/" class="tab">
+        Video
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </a>
+<!--[if ENDBLOCK]><![endif]-->    <!--[if BLOCK]><![endif]-->    <a href="https://dummyfiles.dev/en/dummy-audio-generator/" class="tab">
+        Audio
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </a>
+<!--[if ENDBLOCK]><![endif]-->    <!--[if BLOCK]><![endif]-->    <a href="https://dummyfiles.dev/en/dummy-qr-code-generator/" class="tab">
+        QR code
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </a>
+<!--[if ENDBLOCK]><![endif]-->    <!--[if BLOCK]><![endif]-->    <a href="https://dummyfiles.dev/en/dummy-eicar-test-file/" class="tab">
+        EICAR (Test Virus)
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </a>
+<!--[if ENDBLOCK]><![endif]--></nav>
+
+<main class="main">
+    
+    <!--[if BLOCK]><![endif]-->    <div id="tab-panel-file" class="panel" role="tabpanel" aria-hidden="">
+        <div class="card">
+            <label class="label" for="fileType">File type</label>
+            <select id="fileType" wire:model.live="fileType" aria-label="File type">
+                <option value="zip">ZIP</option>
+                <option value="bin">BIN</option>
+                <option value="jpg">JPG</option>
+                <option value="png">PNG</option>
+                <option value="webp">WebP</option>
+                <option value="pdf">PDF</option>
+            </select>
+
+            <label class="label" for="fileSizeNumber">Target size</label>
+            <div class="input-row">
+                <input type="number" id="fileSizeNumber" value="100" wire:model.live="fileSizeNumber" min="1" max="5120" step="1" placeholder="100" autocomplete="off" />
+                <select wire:model.live="fileSizeUnit" aria-label="Unit">
+                    <option value="KB">KB</option>
+                    <option value="MB">MB</option>
+                    <option value="GB">GB</option>
+                </select>
+            </div>
+
+            <label class="label" for="fileFilename">Filename (optional)</label>
+            <input type="text" id="fileFilename" wire:model.live="fileFilename" placeholder="testfile" autocomplete="off" />
+
+            <button type="button" class="btn btn-primary btn-download-with-progress"
+                    wire:key="file-download-bin-100-MB"
+                    data-livewire-download="file"
+                    data-download-filename="dummy-100MB.bin"
+                    data-max-file-size-bytes="5368709120"
+                    data-file-size-bytes="104857600">
+                Create file
+            </button>
+            <div class="download-progress-wrap mt-3" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Creating file…" aria-live="polite" hidden>
+                <div class="download-progress-bar">
+                    <div class="download-progress-fill"></div>
+                </div>
+                <span class="download-progress-text">0%</span>
+            </div>
+            <p class="mt-3 text-sm text-neutral-500 dark:text-neutral-400 mb-0 flex flex-wrap items-center gap-x-2 gap-y-1">
+                Filename: <span class="font-mono">dummy-100MB.bin</span>
+            </p>
+        </div>
+    </div>
+    <!--[if ENDBLOCK]><![endif]-->
+    
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></main>
+</div>
+
+<script type="application/json" id="generator-tab-urls">{"csv":"https:\/\/dummyfiles.dev\/en\/dummy-csv-generator\/","json":"https:\/\/dummyfiles.dev\/en\/dummy-json-generator\/","qr":"https:\/\/dummyfiles.dev\/en\/dummy-qr-code-generator\/","text":"https:\/\/dummyfiles.dev\/en\/dummy-text-generator\/","image":"https:\/\/dummyfiles.dev\/en\/dummy-placeholder-image-generator\/","eicar":"https:\/\/dummyfiles.dev\/en\/dummy-eicar-test-file\/","pdf":"https:\/\/dummyfiles.dev\/en\/dummy-pdf-generator\/","video":"https:\/\/dummyfiles.dev\/en\/dummy-video-generator\/","audio":"https:\/\/dummyfiles.dev\/en\/dummy-audio-generator\/"}</script>
+            
+                                    <div class="stats-row" role="list">
+                <div class="stats-row__item" role="listitem">
+                    <span class="stats-row__value" data-counter="24">24</span>
+                    <span class="stats-row__label">File formats</span>
+                </div>
+                <div class="stats-row__item" role="listitem">
+                    <span class="stats-row__value">5GB</span>
+                    <span class="stats-row__label">Max file size</span>
+                </div>
+                <div class="stats-row__item" role="listitem">
+                    <span class="stats-row__value">100%</span>
+                    <span class="stats-row__label">Free</span>
+                </div>
+                <div class="stats-row__item" role="listitem">
+                    <span class="stats-row__value">83,495.9 GB</span>
+                    <span class="stats-row__label whitespace-normal text-center">Data volume<br>transferred</span>
+                </div>
+            </div>
+            
+            <footer class="footer">
+                <p class="footer__main text-neutral-500 dark:text-neutral-400">
+                    <a href="https://dummyfiles.dev/en/imprint/" class="text-accent hover:underline">Imprint</a>
+                    ·
+                    <a href="https://dummyfiles.dev/en/privacy/" class="text-accent hover:underline">Privacy policy</a>
+                </p>
+                <p class="footer__landing text-neutral-500 dark:text-neutral-400">
+                    <a href="https://dummyfiles.dev/en/test-files/" class="text-accent hover:underline">test files</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/sample-files/" class="text-accent hover:underline">sample file</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/dummy-files/" class="text-accent hover:underline">fake file</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/sample-files/" class="text-accent hover:underline">sample file generator</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/dummy-pdf-file/" class="text-accent hover:underline">dummy pdf file</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/" class="text-accent hover:underline">dummy pdf download</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/" class="text-accent hover:underline">test pdf file</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/dummy-pdf-generator/" class="text-accent hover:underline">random pdf</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/" class="text-accent hover:underline">pdf placeholder</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/" class="text-accent hover:underline">pdf test document</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/" class="text-accent hover:underline">PDF Test Files</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/zip/" class="text-accent hover:underline">sample zip</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/jpg/" class="text-accent hover:underline">dummy jpg</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/jpg/" class="text-accent hover:underline">test jpg</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/png/" class="text-accent hover:underline">test png</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/png/" class="text-accent hover:underline">png download</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/webp/" class="text-accent hover:underline">sample webp</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/csv/" class="text-accent hover:underline">csv download</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/csv/" class="text-accent hover:underline">csv test file</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/json/" class="text-accent hover:underline">json download</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/json/" class="text-accent hover:underline">api response generator</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/mp3/" class="text-accent hover:underline">dummy mp3</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/mp3/" class="text-accent hover:underline">MP3 Test Files</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/dummy-text-generator/" class="text-accent hover:underline">sample text</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/dummy-text-generator/" class="text-accent hover:underline">random sentence</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/eicar/" class="text-accent hover:underline">eicar zip</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/eicar/" class="text-accent hover:underline">eicar txt</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/eicar/" class="text-accent hover:underline">virus test file</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/eicar/" class="text-accent hover:underline">antivirus test file</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/eicar/" class="text-accent hover:underline">download virus for testing</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/eicar/" class="text-accent hover:underline">EICAR Test Files</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/document-files/" class="text-accent hover:underline">placeholder document</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/4gb/" class="text-accent hover:underline">4gb file download</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/5gb/" class="text-accent hover:underline">5gb file download</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/large-files/" class="text-accent hover:underline">Large Test Files</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/dummy-files/" class="text-accent hover:underline">All Dummy Files</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/dummy-qr-code-generator/" class="text-accent hover:underline">QR code generator</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/20kb/" class="text-accent hover:underline">20kb pdf</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/50kb/" class="text-accent hover:underline">50kb pdf</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/5mb/" class="text-accent hover:underline">5mb pdf</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/20mb/" class="text-accent hover:underline">20mb pdf</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/25mb/" class="text-accent hover:underline">25mb pdf</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/75mb/" class="text-accent hover:underline">75mb pdf</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/100mb/" class="text-accent hover:underline">100mb pdf</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/1gb/" class="text-accent hover:underline">1gb pdf</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/pdf/2gb/" class="text-accent hover:underline">2gb pdf</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/zip/5mb/" class="text-accent hover:underline">5mb zip</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/zip/10mb/" class="text-accent hover:underline">10mb zip</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/zip/20mb/" class="text-accent hover:underline">20mb zip</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/zip/2gb/" class="text-accent hover:underline">2gb zip</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/zip/3gb/" class="text-accent hover:underline">3gb zip</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/mp4/1mb/" class="text-accent hover:underline">1mb mp4</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/mp4/10mb/" class="text-accent hover:underline">10mb mp4</a><span class="text-neutral-400 dark:text-neutral-500"> · </span>                    <a href="https://dummyfiles.dev/en/mp4/50mb/" class="text-accent hover:underline">50mb mp4</a>            </p>
+                <div class="footer__sister text-neutral-500 dark:text-neutral-400">
+                    <p>
+                        Need dummy text or lorem ipsum? Generate placeholder copy on <a href="https://blindtextgenerator.dev" target="_blank" rel="noopener">blindtextgenerator.dev</a>.
+                    </p>
+                    <p>
+                        Calculate print size from pixels and DPI on <a href="https://howbigcaniprint.com" target="_blank" rel="noopener">howbigcaniprint.com</a>.
+                    </p>
+                    <p>
+                        Need dummy images or placeholders? Generate them on <a href="https://dummyimages.dev" target="_blank" rel="noopener">dummyimages.dev</a>.
+                    </p>
+                    <p>
+                        Plan group meetups, who brings what, and shared expenses on <a href="https://mitplanlos.de" target="_blank" rel="noopener">mitplanlos.de</a>.
+                    </p>
+                    <p>
+                        Manage freelancer projects, time tracking, and invoices on <a href="https://freece.de" target="_blank" rel="noopener">freece.de</a>.
+                    </p>
+                </div>
+            </footer>
+        </div>
+
+        <script src="https://dummyfiles.dev/livewire-e02d5289/livewire.min.js?id=8642c1d5"   data-csrf="zco95sYCw1ZQr6GQUl4wLZLkRKBgwHT8xeEo1sjN" data-module-url="https://dummyfiles.dev/livewire-e02d5289" data-update-uri="https://dummyfiles.dev/livewire-e02d5289/update" data-navigate-once="true"></script>
+        <script src="https://dummyfiles.dev/flux/flux.min.js?id=2d7e3896" data-navigate-once></script>
+
+                
+        <div id="cf-turnstile-host" class="cf-turnstile-host" aria-live="polite" hidden style="position:static;inset:auto;display:none;"></div>
+        
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
+        
+        <script>
+            function trackFileGeneration(opts) {
+                opts = opts || {};
+                var fields = opts.fields || {};
+                var filename = opts.filename || 'download';
+                var bytes = parseInt(opts.bytes, 10) || 0;
+                var kind = String(opts.kind || fields.type || fields.format || fields.ext || 'file').toLowerCase();
+                var label = filename;
+                if (fields.seconds && fields.width && fields.height) {
+                    label = fields.seconds + 's ' + fields.width + 'x' + fields.height + ' ' + kind;
+                } else if (fields.size && fields.width && fields.height) {
+                    label = fields.size + ' ' + fields.width + 'x' + fields.height + ' ' + kind;
+                } else if (fields.size) {
+                    label = fields.size + ' ' + kind;
+                } else if (fields.pages) {
+                    label = fields.pages + ' pages pdf';
+                } else if (fields.rows) {
+                    label = fields.rows + ' rows csv';
+                } else if (fields.width && fields.height) {
+                    label = fields.width + 'x' + fields.height + ' ' + kind;
+                } else if (fields.chars) {
+                    label = fields.chars + ' chars';
+                } else if (fields.count) {
+                    label = fields.count + ' records json';
+                }
+                var ext = '';
+                var extMatch = filename.match(/\.([a-z0-9]+)$/i);
+                if (extMatch) ext = extMatch[1].toLowerCase();
+
+                var paq = window._paq = window._paq || [];
+                if (bytes > 0) {
+                    paq.push(['trackEvent', 'Generate', kind, label, bytes]);
+                } else {
+                    paq.push(['trackEvent', 'Generate', kind, label]);
+                }
+
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'file_download',
+                    file_name: filename,
+                    file_extension: ext,
+                    file_size: bytes > 0 ? bytes : undefined,
+                    file_type: kind,
+                    generation_label: label
+                });
+            }
+
+            var turnstileWidgetId = null;
+            var turnstileTokenWaiters = null;
+            var turnstileLastToken = '';
+            var turnstileMountedNear = null;
+            function turnstileSiteKey() {
+                var meta = document.querySelector('meta[name="turnstile-site-key"]');
+                return meta ? (meta.getAttribute('content') || '') : '';
+            }
+            function turnstileCookieRequired() {
+                return /(?:^|;\s*)dummyfiles_turnstile=1(?:;|$)/.test(document.cookie || '');
+            }
+            function turnstileIsRequired() {
+                var meta = document.querySelector('meta[name="turnstile-required"]');
+                var metaRequired = meta && meta.getAttribute('content') === '1';
+                var metaFree = meta && meta.getAttribute('content') === '0';
+                if (metaRequired || turnstileCookieRequired()) return true;
+                if (metaFree) return false;
+                return false;
+            }
+            function setTurnstileRequired(required) {
+                var meta = document.querySelector('meta[name="turnstile-required"]');
+                if (!meta && turnstileSiteKey()) {
+                    meta = document.createElement('meta');
+                    meta.setAttribute('name', 'turnstile-required');
+                    document.head.appendChild(meta);
+                }
+                if (meta) meta.setAttribute('content', required ? '1' : '0');
+                try {
+                    document.cookie = 'dummyfiles_turnstile=' + (required ? '1' : '0') + '; path=/; Max-Age=3600; SameSite=Lax';
+                } catch (e) {}
+                if (!required) {
+                    clearTurnstileToken();
+                    hideTurnstileHost();
+                }
+            }
+            function clearTurnstileToken() {
+                turnstileLastToken = '';
+                if (turnstileWidgetId !== null && window.turnstile && typeof window.turnstile.reset === 'function') {
+                    try { window.turnstile.reset(turnstileWidgetId); } catch (e) {}
+                }
+            }
+            function syncTurnstileRequiredFromResponse(res) {
+                if (!res || !res.headers) return;
+                if (res.headers.get('X-Turnstile-Clear') === '1') {
+                    clearTurnstileToken();
+                }
+                var header = res.headers.get('X-Turnstile-Required');
+                if (header === '1' || header === '0') {
+                    setTurnstileRequired(header === '1');
+                }
+            }
+            function hideTurnstileHost() {
+                var host = document.getElementById('cf-turnstile-host');
+                if (host) {
+                    host.setAttribute('hidden', '');
+                    host.style.display = 'none';
+                }
+            }
+            function placeTurnstileHostAbove(btn) {
+                var host = document.getElementById('cf-turnstile-host');
+                if (!host) {
+                    host = document.createElement('div');
+                    host.id = 'cf-turnstile-host';
+                    host.className = 'cf-turnstile-host';
+                    document.body.appendChild(host);
+                }
+                host.style.position = 'static';
+                host.style.inset = 'auto';
+                host.style.bottom = 'auto';
+                host.style.right = 'auto';
+                host.style.left = 'auto';
+                host.style.top = 'auto';
+                host.style.zIndex = 'auto';
+                host.style.display = 'flex';
+                host.style.width = '100%';
+                host.style.margin = '0.75rem 0';
+                host.style.minHeight = '65px';
+                host.style.justifyContent = 'center';
+                host.removeAttribute('hidden');
+                if (btn && btn.parentNode) {
+                    var needsMove = host.nextElementSibling !== btn || host.parentNode !== btn.parentNode;
+                    if (needsMove) {
+                        var keptToken = turnstileLastToken || peekTurnstileToken();
+                        if (turnstileWidgetId !== null && window.turnstile && typeof window.turnstile.remove === 'function') {
+                            try { window.turnstile.remove(turnstileWidgetId); } catch (e) {}
+                            turnstileWidgetId = null;
+                            host.innerHTML = '';
+                        }
+                        turnstileLastToken = keptToken;
+                        btn.parentNode.insertBefore(host, btn);
+                    }
+                    turnstileMountedNear = btn;
+                }
+                return host;
+            }
+            function showTurnstileNear(btn) {
+                if (!turnstileIsRequired() || !turnstileSiteKey()) return;
+                if (!btn) return;
+                placeTurnstileHostAbove(btn);
+                ensureTurnstileWidget(function () {});
+            }
+            function ensureTurnstileWidget(onReady) {
+                var siteKey = turnstileSiteKey();
+                var failMsg = "Security check failed. Please reload the page and try again.";
+                var started = Date.now();
+                function ready() {
+                    if (!window.turnstile || typeof window.turnstile.render !== 'function') {
+                        if (Date.now() - started > 10000) {
+                            if (typeof onReady === 'function') onReady(new Error(failMsg));
+                            return;
+                        }
+                        setTimeout(ready, 50);
+                        return;
+                    }
+                    function mount() {
+                        var host = document.getElementById('cf-turnstile-host');
+                        if (!host) {
+                            if (typeof onReady === 'function') onReady(new Error(failMsg));
+                            return;
+                        }
+                        try {
+                            if (turnstileWidgetId === null) {
+                                turnstileWidgetId = window.turnstile.render(host, {
+                                    sitekey: siteKey,
+                                    theme: 'auto',
+                                    retry: 'auto',
+                                    callback: function (token) {
+                                        turnstileLastToken = token || '';
+                                        var waiters = turnstileTokenWaiters;
+                                        turnstileTokenWaiters = null;
+                                        if (waiters) waiters.resolve(turnstileLastToken);
+                                    },
+                                    'error-callback': function () {
+                                        // Nicht sofort abbrechen – Widget neu versuchen, User kann erneut klicken.
+                                        turnstileLastToken = '';
+                                        try { window.turnstile.reset(turnstileWidgetId); } catch (e) {}
+                                        return true;
+                                    },
+                                    'expired-callback': function () {
+                                        turnstileLastToken = '';
+                                        try { window.turnstile.reset(turnstileWidgetId); } catch (e) {}
+                                    },
+                                });
+                            }
+                            if (typeof onReady === 'function') onReady(null);
+                        } catch (err) {
+                            if (typeof onReady === 'function') onReady(err);
+                        }
+                    }
+                    if (typeof window.turnstile.ready === 'function') {
+                        window.turnstile.ready(mount);
+                    } else {
+                        mount();
+                    }
+                }
+                ready();
+            }
+            function obtainTurnstileToken(nearBtn) {
+                if (!turnstileIsRequired()) {
+                    return Promise.resolve('');
+                }
+                var siteKey = turnstileSiteKey();
+                if (!siteKey) {
+                    return Promise.resolve('');
+                }
+                placeTurnstileHostAbove(nearBtn || turnstileMountedNear || document.querySelector('.btn-download-with-progress'));
+                return new Promise(function (resolve, reject) {
+                    ensureTurnstileWidget(function (err) {
+                        if (err) {
+                            reject(err instanceof Error ? err : new Error(String(err)));
+                            return;
+                        }
+                        resolve(peekTurnstileToken());
+                    });
+                });
+            }
+            function peekTurnstileToken() {
+                if (turnstileLastToken) return turnstileLastToken;
+                try {
+                    if (turnstileWidgetId !== null && window.turnstile && typeof window.turnstile.getResponse === 'function') {
+                        var existing = window.turnstile.getResponse(turnstileWidgetId);
+                        if (existing) {
+                            turnstileLastToken = existing;
+                            return existing;
+                        }
+                    }
+                } catch (e) {}
+                return '';
+            }
+            function showDownloadPageAlert(msg) {
+                var el = document.getElementById('download-page-alert');
+                if (!el) return;
+                var text = el.querySelector('.download-page-alert__text');
+                if (text) text.textContent = msg || '';
+                el.removeAttribute('hidden');
+                try {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } catch (e) {}
+            }
+            function hideDownloadPageAlert() {
+                var el = document.getElementById('download-page-alert');
+                if (el) el.setAttribute('hidden', '');
+            }
+            function showTurnstileWarning(wrap, bar, textEl, msg) {
+                hideDownloadPageAlert();
+                wrap.removeAttribute('hidden');
+                wrap.classList.remove('download-progress-wrap--error');
+                wrap.classList.add('download-progress-wrap--warn');
+                if (bar) bar.style.display = 'none';
+                textEl.textContent = msg;
+            }
+            function probeTurnstileRequired(url, csrf) {
+                if (!turnstileSiteKey()) {
+                    return Promise.resolve(false);
+                }
+                var fd = new FormData();
+                fd.append('_token', csrf);
+                return fetch(url, {
+                    method: 'POST',
+                    body: fd,
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-Turnstile-Probe': '1',
+                    },
+                }).then(function (res) {
+                    syncTurnstileRequiredFromResponse(res);
+                    return res.json().catch(function () { return {}; }).then(function (data) {
+                        if (data && typeof data.required === 'boolean') {
+                            setTurnstileRequired(data.required);
+                        }
+                        return turnstileIsRequired();
+                    });
+                }).catch(function () {
+                    return turnstileIsRequired();
+                });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', bootDownloadAlerts);
+            } else {
+                bootDownloadAlerts();
+            }
+            function bootDownloadAlerts() {
+                var meta = document.querySelector('meta[name="turnstile-required"]');
+                if (meta) {
+                    setTurnstileRequired(meta.getAttribute('content') === '1');
+                    if (!turnstileIsRequired()) {
+                        hideTurnstileHost();
+                    }
+                }
+                            }
+
+            document.body.addEventListener('click', async function (e) {
+                var copyBtn = e.target.closest('.btn-copy-url');
+                if (copyBtn) {
+                    e.preventDefault();
+                    var url = copyBtn.getAttribute('data-copy-url');
+                    if (url) {
+                        var label = copyBtn.getAttribute('data-copy-label') || 'Copy URL';
+                        var copied = copyBtn.getAttribute('data-copied-label') || 'Copied!';
+                        navigator.clipboard.writeText(url).then(function () {
+                            copyBtn.textContent = copied;
+                            copyBtn.disabled = true;
+                            setTimeout(function () {
+                                copyBtn.textContent = label;
+                                copyBtn.disabled = false;
+                            }, 2000);
+                        });
+                    }
+                    return;
+                }
+                var btn = e.target.closest('.btn-download-with-progress');
+                if (!btn) return;
+                e.preventDefault();
+                e.stopPropagation();
+                var filename = btn.getAttribute('data-download-filename') || 'download';
+                var livewireTab = btn.getAttribute('data-livewire-download');
+                var dl = null;
+                var comp = null;
+                if (livewireTab && window.Livewire) {
+                    var root = btn.closest('[wire\\:id]');
+                    if (root) {
+                        var id = root.getAttribute('wire:id');
+                        if (id) {
+                            try {
+                                comp = Livewire.find(id);
+                                if (comp && typeof comp.call === 'function') {
+                                    var tabCap = livewireTab.charAt(0).toUpperCase() + livewireTab.slice(1);
+                                    dl = await comp.call('getWebDownloadPayload', livewireTab);
+                                    filename = await comp.call('getExampleFilename' + tabCap);
+                                }
+                            } catch (err) { console.error(err); }
+                        }
+                    }
+                }
+                if (!dl || !dl.url) {
+                    var dataUrl = btn.getAttribute('data-download-url');
+                    if (dataUrl) {
+                        var fields = {};
+                        try { fields = JSON.parse(btn.getAttribute('data-download-fields') || '{}'); } catch (err) { fields = {}; }
+                        dl = { url: dataUrl, fields: fields };
+                        filename = btn.getAttribute('data-download-filename') || filename;
+                    }
+                }
+                if (!dl || !dl.url) return;
+                var url = dl.url;
+                var fields = dl.fields || {};
+                var csrfMeta = document.querySelector('meta[name="csrf-token"]');
+                var csrf = csrfMeta ? csrfMeta.getAttribute('content') : '';
+                var card = btn.closest('.quick-dl-card') || btn.closest('.card') || btn.closest('.landing-hero__inner') || btn.closest('.landing-hero');
+                var wrap = card ? card.querySelector('.download-progress-wrap') : null;
+                if (!wrap) return;
+                var bar = wrap.querySelector('.download-progress-bar');
+                var fill = wrap.querySelector('.download-progress-fill');
+                var textEl = wrap.querySelector('.download-progress-text');
+                if (!fill || !textEl) return;
+                var fileSizeTooLarge = "File size is too large.";
+                var turnstileError = "Security check failed. Please reload the page and try again.";
+                var turnstileWaitMsg = "Please confirm the security check first.";
+                var turnstileToken = '';
+                try {
+                    await probeTurnstileRequired(url, csrf);
+                    if (turnstileIsRequired()) {
+                        turnstileToken = peekTurnstileToken();
+                        if (!turnstileToken) {
+                            showTurnstileNear(btn);
+                            showTurnstileWarning(wrap, bar, textEl, turnstileWaitMsg);
+                            return;
+                        }
+                    } else {
+                        turnstileToken = '';
+                        wrap.classList.remove('download-progress-wrap--warn');
+                    }
+                } catch (err) {
+                    wrap.removeAttribute('hidden');
+                    wrap.classList.remove('download-progress-wrap--warn');
+                    wrap.classList.add('download-progress-wrap--error');
+                    if (bar) bar.style.display = 'none';
+                    textEl.textContent = (err && err.message) ? err.message : turnstileError;
+                    setTimeout(function () { wrap.setAttribute('hidden', ''); wrap.classList.remove('download-progress-wrap--error'); if (bar) bar.style.display = ''; }, 4000);
+                    return;
+                }
+                wrap.classList.remove('download-progress-wrap--warn');
+                if (btn.hasAttribute('data-file-size-bytes')) {
+                    var requestedBytes = parseInt(btn.getAttribute('data-file-size-bytes') || '0', 10);
+                    var maxFileBytes = parseInt(btn.getAttribute('data-max-file-size-bytes') || '0', 10);
+                    if (maxFileBytes > 0 && requestedBytes > maxFileBytes) {
+                        wrap.removeAttribute('hidden');
+                        wrap.classList.add('download-progress-wrap--error');
+                        if (bar) bar.style.display = 'none';
+                        textEl.textContent = fileSizeTooLarge;
+                        return;
+                    }
+                    var form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = url;
+                    form.target = '_self';
+                    var t0 = document.createElement('input');
+                    t0.type = 'hidden';
+                    t0.name = '_token';
+                    t0.value = csrf;
+                    form.appendChild(t0);
+                    if (turnstileToken) {
+                        var t1 = document.createElement('input');
+                        t1.type = 'hidden';
+                        t1.name = 'cf-turnstile-response';
+                        t1.value = turnstileToken;
+                        form.appendChild(t1);
+                    }
+                    Object.keys(fields).forEach(function (k) {
+                        var inp = document.createElement('input');
+                        inp.type = 'hidden';
+                        inp.name = k;
+                        inp.value = fields[k];
+                        form.appendChild(inp);
+                    });
+                    document.body.appendChild(form);
+                    trackFileGeneration({
+                        filename: filename,
+                        fields: fields,
+                        bytes: requestedBytes,
+                        kind: livewireTab || fields.type || fields.format || fields.ext
+                    });
+                    form.submit();
+                    form.remove();
+                    if (turnstileToken) {
+                        clearTurnstileToken();
+                    }
+                    return;
+                }
+                btn.disabled = true;
+                btn.classList.add('opacity-60');
+                hideDownloadPageAlert();
+                document.querySelectorAll('.download-progress-wrap').forEach(function (w) { w.setAttribute('hidden', ''); w.classList.remove('download-progress-wrap--error'); w.classList.remove('download-progress-wrap--warn'); });
+                wrap.removeAttribute('hidden');
+                wrap.classList.remove('download-progress-wrap--error');
+                wrap.classList.remove('download-progress-wrap--warn');
+                if (bar) bar.style.display = '';
+                fill.style.width = '0%';
+                textEl.textContent = '0 %';
+                var fallbackError = "Download failed";
+                var rateLimitError = "Too many downloads. Please wait a minute and try again.";
+                var serverErrorLabel = "Server error";
+
+                function runFetchDownload(token) {
+                    var fd = new FormData();
+                    fd.append('_token', csrf);
+                    if (token) {
+                        fd.append('cf-turnstile-response', token);
+                    }
+                    Object.keys(fields).forEach(function (k) {
+                        fd.append(k, fields[k]);
+                    });
+                    return fetch(url, {
+                        method: 'POST',
+                        body: fd,
+                        credentials: 'same-origin',
+                        headers: {
+                            'Accept': 'application/json, application/pdf, */*',
+                            'X-Requested-With': 'XMLHttpRequest',
+                        },
+                    }).then(function (res) {
+                        syncTurnstileRequiredFromResponse(res);
+                        if (turnstileIsRequired()) {
+                            showTurnstileNear(btn);
+                        }
+                        if (!res.ok) {
+                            return res.text().then(function (text) {
+                                var msg = fallbackError;
+                                var needsTurnstileRetry = false;
+                                if (res.status === 429) {
+                                    msg = rateLimitError;
+                                    try {
+                                        var rateData = text ? JSON.parse(text) : null;
+                                        if (rateData && typeof rateData.message === 'string' && rateData.message.trim() !== '') {
+                                            msg = rateData.message;
+                                        }
+                                    } catch (e) {}
+                                    var rateErr = new Error(msg);
+                                    rateErr.rateLimited = true;
+                                    throw rateErr;
+                                }
+                                if (res.status === 403) {
+                                    msg = turnstileError;
+                                    try {
+                                        var denyData = text ? JSON.parse(text) : null;
+                                        if (denyData && typeof denyData.message === 'string' && denyData.message.trim() !== '') {
+                                            msg = denyData.message;
+                                        }
+                                        if (denyData && denyData.turnstile_required) {
+                                            needsTurnstileRetry = true;
+                                            setTurnstileRequired(true);
+                                            showTurnstileNear(btn);
+                                            msg = turnstileWaitMsg;
+                                        }
+                                    } catch (e) {}
+                                    if (needsTurnstileRetry) {
+                                        var warnErr = new Error(msg);
+                                        warnErr.turnstileWarn = true;
+                                        throw warnErr;
+                                    }
+                                    throw new Error(msg);
+                                }
+                                try {
+                                    var data = text ? JSON.parse(text) : null;
+                                    if (data && data.errors && typeof data.errors === 'object') {
+                                        var firstField = Object.keys(data.errors)[0];
+                                        var firstMessages = firstField ? data.errors[firstField] : null;
+                                        var firstMessage = Array.isArray(firstMessages) ? firstMessages[0] : firstMessages;
+                                        if (typeof firstMessage === 'string' && firstMessage.trim() !== '') {
+                                            msg = firstMessage;
+                                        } else if (typeof data.message === 'string' && data.message.trim() !== '') {
+                                            msg = data.message;
+                                        }
+                                    } else if (data && typeof data.error === 'string') {
+                                        msg = data.error;
+                                        if (msg.toLowerCase().indexOf('exceeds maximum') !== -1 || msg.toLowerCase().indexOf('file size') !== -1) {
+                                            msg = fileSizeTooLarge;
+                                        }
+                                    } else if (data && typeof data.message === 'string' && data.message.trim() !== '') {
+                                        msg = data.message;
+                                    } else if (text && text.length > 0) {
+                                        var short = text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 120);
+                                        if (short.length > 0) {
+                                            msg = short;
+                                        } else {
+                                            msg = serverErrorLabel + ' (' + res.status + ')';
+                                        }
+                                    } else {
+                                        msg = serverErrorLabel + ' (' + res.status + ')';
+                                    }
+                                } catch (e) {
+                                    msg = serverErrorLabel + ' (' + res.status + ')';
+                                }
+                                throw new Error(msg);
+                            });
+                        }
+                        var contentType = res.headers.get('Content-Type') || 'application/octet-stream';
+                        var total = parseInt(res.headers.get('Content-Length') || '0', 10);
+                        var reader = res.body.getReader();
+                        var chunks = [];
+                        var received = 0;
+                        function pump() {
+                            return reader.read().then(function (result) {
+                                if (result.done) return { chunks: chunks, contentType: contentType };
+                                chunks.push(result.value);
+                                received += result.value.length;
+                                if (total > 0) {
+                                    var pct = Math.min(99, Math.round(received / total * 100));
+                                    fill.style.width = pct + '%';
+                                    textEl.textContent = pct + ' %';
+                                } else {
+                                    var mb = (received / 1048576).toFixed(1);
+                                    textEl.textContent = mb + ' MB';
+                                }
+                                return pump();
+                            });
+                        }
+                        return pump();
+                    });
+                }
+
+                runFetchDownload(turnstileToken).then(function (result) {
+                    var chunks = result.chunks;
+                    var contentType = result.contentType || 'application/octet-stream';
+                    fill.style.width = '100%';
+                    textEl.textContent = '100 %';
+                    var blob = new Blob(chunks, { type: contentType });
+                    trackFileGeneration({
+                        filename: filename,
+                        fields: fields,
+                        bytes: blob.size,
+                        kind: livewireTab || fields.type || fields.format || fields.ext
+                    });
+                    var a = document.createElement('a');
+                    var blobUrl = URL.createObjectURL(blob);
+                    a.href = blobUrl;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    setTimeout(function () { URL.revokeObjectURL(blobUrl); wrap.setAttribute('hidden', ''); }, 1000);
+                }).catch(function (err) {
+                    console.error('Download error:', err);
+                    if (bar) bar.style.display = 'none';
+                    if (err && err.rateLimited) {
+                        wrap.setAttribute('hidden', '');
+                        wrap.classList.remove('download-progress-wrap--error');
+                        wrap.classList.remove('download-progress-wrap--warn');
+                        showDownloadPageAlert(err.message || rateLimitError);
+                        return;
+                    }
+                    if (err && err.turnstileWarn) {
+                        showTurnstileWarning(wrap, bar, textEl, err.message || turnstileWaitMsg);
+                        return;
+                    }
+                    wrap.classList.remove('download-progress-wrap--warn');
+                    wrap.classList.add('download-progress-wrap--error');
+                    textEl.textContent = err.message || fallbackError;
+                    setTimeout(function () { wrap.setAttribute('hidden', ''); wrap.classList.remove('download-progress-wrap--error'); if (bar) bar.style.display = ''; }, 4000);
+                }).finally(function () {
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-60');
+                });
+            });
+
+            (function () {
+                var box = document.getElementById('lang-hint');
+                if (!box) return;
+                try {
+                    if (localStorage.getItem('lang_hint_dismissed') === '1') return;
+                } catch (e) {}
+                var hints = {};
+                try { hints = JSON.parse(box.getAttribute('data-hints') || '{}'); } catch (e) { return; }
+                var current = box.getAttribute('data-current');
+                var langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']);
+                var target = null;
+                for (var i = 0; i < langs.length; i++) {
+                    var code = String(langs[i] || '').toLowerCase().split('-')[0];
+                    if (hints[code]) { target = code; break; }
+                }
+                if (!target || target === current) return;
+                var link = box.querySelector('.lang-hint__link');
+                link.textContent = hints[target].text;
+                link.setAttribute('href', hints[target].url);
+                link.setAttribute('hreflang', target);
+                box.removeAttribute('hidden');
+                box.querySelector('.lang-hint__close').addEventListener('click', function () {
+                    box.setAttribute('hidden', '');
+                    try { localStorage.setItem('lang_hint_dismissed', '1'); } catch (e) {}
+                });
+            })();
+
+            document.querySelectorAll('.theme-toggle').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var el = document.documentElement;
+                    var isDark = el.classList.contains('dark');
+                    if (isDark) {
+                        el.classList.remove('dark');
+                        try { localStorage.setItem('flux.appearance', 'light'); } catch (e) {}
+                    } else {
+                        el.classList.add('dark');
+                        try { localStorage.setItem('flux.appearance', 'dark'); } catch (e) {}
+                    }
+                    var menu = document.getElementById('header-menu');
+                    if (menu && menu.getAttribute('hidden') !== 'true') {
+                        menu.setAttribute('hidden', '');
+                        document.getElementById('header-menu-backdrop').setAttribute('hidden', '');
+                        document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+
+            (function () {
+                var hamburger = document.getElementById('hamburger');
+                var menu = document.getElementById('header-menu');
+                var backdrop = document.getElementById('header-menu-backdrop');
+                if (!hamburger || !menu || !backdrop) return;
+                function openMenu() {
+                    menu.removeAttribute('hidden');
+                    backdrop.removeAttribute('hidden');
+                    hamburger.setAttribute('aria-expanded', 'true');
+                }
+                function closeMenu() {
+                    menu.setAttribute('hidden', '');
+                    backdrop.setAttribute('hidden', '');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                }
+                hamburger.addEventListener('click', function () {
+                    if (menu.hasAttribute('hidden')) openMenu(); else closeMenu();
+                });
+                backdrop.addEventListener('click', closeMenu);
+            })();
+        </script>
+    </body>
+</html>
