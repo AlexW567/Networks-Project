@@ -60,7 +60,7 @@ class Client:
 
     def __init__(
         self,
-        ip: str = "10.200.102.246",
+        ip: str = "10.200.102.237",
         port: int = 12345,  # matches the server's port
         size: int = 1024,
         format: str = "utf-8",
@@ -266,7 +266,7 @@ class Client:
 #       or: python client.py SERVER_IP  (server on another PC)
 if __name__ == "__main__":
     import sys
-    client = Client(ip=sys.argv[1] if len(sys.argv) > 1 else "10.200.102.246")  # school VPN server; pass 127.0.0.1 to test on this PC
+    client = Client(ip=sys.argv[1] if len(sys.argv) > 1 else "10.200.102.237")  # school VPN server; pass 127.0.0.1 to test on this PC
     try:
         client.connect()
     except (ConnectionRefusedError, TimeoutError):

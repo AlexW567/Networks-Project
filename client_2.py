@@ -1,7 +1,7 @@
 from client import Client
 
-# Use 127.0.0.1 when the server runs on the same machine.
-IP = "127.0.0.1"
+# School VPN server; use 127.0.0.1 when the server runs on the same machine.
+IP = "10.200.102.237"
 PORT = 12345
 
 
